@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071244">
+<title>タイピング冒険録 v2.7 | 60秒タイムアタック</title>
+<style>
+:root{color-scheme:dark;--ink:#f4f7ff;--muted:#9fb1d9;--gold:#ffdf8a;--blue:#66c8fb;--green:#75e1bd;--red:#ff8a9a}
+*{box-sizing:border-box}body{margin:0;min-height:100dvh;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);background:radial-gradient(ellipse at 68% 0%,#1c4979 0%,transparent 42%),radial-gradient(ellipse at 20% 85%,#233b71 0%,transparent 50%),#07102a;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.52;background-image:radial-gradient(1px 1px at 13% 21%,#fff 95%,transparent),radial-gradient(2px 2px at 34% 51%,#fff 95%,transparent),radial-gradient(2px 2px at 80% 27%,#fff 95%,transparent),radial-gradient(1px 1px at 71% 74%,#fff 95%,transparent),radial-gradient(1px 1px at 53% 9%,#fff 95%,transparent);background-size:280px 240px}
+.shell{max-width:1060px;margin:auto;padding:20px 18px 40px;position:relative}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:23px}.brand{display:flex;align-items:center;gap:11px}.crest{display:grid;place-items:center;width:49px;height:49px;border-radius:15px;background:linear-gradient(140deg,#ffe7a6,#ad752b);font-size:27px;box-shadow:0 0 25px #ffe49a3c}.overline{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:.14em}.brand-name{font-size:18px;font-weight:900;letter-spacing:.04em}.mini{color:var(--muted);font-size:12px}
+.hero{text-align:center;margin:30px auto 24px}.hero h1{font-size:clamp(27px,5vw,43px);line-height:1.23;letter-spacing:.055em;margin:12px 0;background:linear-gradient(180deg,#fff8da,#ffd58c);color:transparent;background-clip:text}.hero p{color:#c3d5ed;line-height:1.7;font-size:14px;margin:6px auto;max-width:590px}
+.card{background:linear-gradient(145deg,rgba(21,40,83,.95),rgba(11,24,57,.96));border:1px solid #547cbd7c;border-radius:22px;box-shadow:0 25px 65px #0005, inset 0 1px #aac5ff17}.setup{padding:23px;max-width:840px;margin:auto}.section-label{font-size:13px;color:var(--gold);font-weight:900;letter-spacing:.06em;margin:0 0 12px}.choice-row{display:flex;flex-wrap:wrap;gap:9px}.choice{appearance:none;border:1px solid #52719c;background:#0b2043;color:#d5e5ff;cursor:pointer;padding:10px 15px;border-radius:11px;font:700 14px inherit;font-size:13px;font-weight:800;transition:background .15s,transform .15s}.choice:hover{background:#17396a}.choice.active{background:linear-gradient(135deg,#2265a7,#19417f);color:white;border-color:#76c9ff;box-shadow:0 0 0 1px #87cafa77 inset}.field{margin-bottom:22px}.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.button{appearance:none;border:0;cursor:pointer;border-radius:13px;font:inherit;font-weight:900;padding:14px 24px;transition:transform .14s,filter .14s}.button:active,.choice:active{transform:scale(.98)}.primary{color:#2f260f;background:linear-gradient(#fff0bc,#ffc35c);box-shadow:0 8px 0 #a86f26,0 14px 26px #0005}.primary:hover{filter:brightness(1.07)}.secondary{background:#193660;border:1px solid #5574ae;color:white}.start{display:block;margin:8px auto 14px;min-width:240px}.hint{text-align:center;color:#a7b7d2;font-size:12px;line-height:1.7}.controls-hint{margin-top:14px}.record{margin-top:17px;border-top:1px solid #ffffff20;padding-top:16px;display:flex;align-items:center;gap:9px;justify-content:center;color:#c9ddff;font-size:13px}
+.hide{display:none!important}
+.game-card{max-width:870px;margin:auto;padding:25px}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:#091932b3;border:1px solid #45639555;border-radius:13px;padding:13px;text-align:center}.stat .k{font-size:11px;color:#a5b8d8}.stat .v{font-variant-numeric:tabular-nums;font-size:clamp(20px,3vw,30px);font-weight:900;letter-spacing:.02em;margin-top:3px}.stat .v .s{font-size:13px;color:#9fb1d9}.timer-track{height:9px;border-radius:20px;background:#050f26;margin:19px 0 7px;overflow:hidden}.timer-bar{height:100%;width:100%;background:linear-gradient(90deg,#68dabd,#8fd7ff);transition:width .16s linear}.timer-bar.urgent{background:linear-gradient(90deg,#ff967b,#ffdc73)}
+.question-area{min-height:275px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:25px 0 18px}.category-pill{background:#a7d6ff1c;border:1px solid #86c8ff55;color:#b4deff;padding:5px 13px;border-radius:50px;font-size:12px;font-weight:800}.qword{font-size:clamp(32px,6.3vw,53px);letter-spacing:.04em;font-weight:900;margin:15px auto 9px;overflow-wrap:anywhere;line-height:1.4}.reading{color:#b5c8e6;font-size:15px;letter-spacing:.07em;margin-bottom:15px}.romaji{min-height:40px;white-space:pre-wrap;word-break:break-all;font:700 clamp(20px,3.8vw,30px) ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1px;color:#688cbf}.romaji .done{color:#7ce3c4}.romaji .remain{color:#b1c2df}.romaji .cursor{color:#ffdf8a;border-bottom:2px solid var(--gold)}.typebox{width:100%;max-width:620px;margin:auto;display:block;font:700 24px ui-monospace,Consolas,monospace;color:white;letter-spacing:1px;outline:none;border:2px solid #4a7aaa;border-radius:12px;background:#07152d;padding:15px 18px;text-align:center;transition:border-color .1s}.typebox:focus{border-color:#7ccfff;box-shadow:0 0 0 4px #83d2ff18}.typebox.bad{border-color:#ff809b;background:#391c35}.message{min-height:27px;text-align:center;color:#bbd4f6;font-weight:700;font-size:13px;margin:13px 0 7px}.game-actions{display:flex;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap}.feedback{color:#93e7c5}.combo{color:#ffe1a0}.footer{margin:23px auto 0;max-width:860px;text-align:center;font-size:11px;color:#92a5c7;line-height:1.8}.result{max-width:700px;margin:auto;padding:34px 25px;text-align:center}.result h2{font-size:30px;color:var(--gold);margin:15px 0}.result .rank{font-size:clamp(48px,11vw,76px);font-weight:1000;text-shadow:0 0 30px #e7d37c8c;line-height:1.2}.result p{line-height:1.75;color:#d6e4fb}.results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:24px 0}.results>div{border-radius:12px;background:#091a37;padding:14px 7px}.results strong{font-size:25px;display:block;color:white}.results span{font-size:11px;color:#a0b3d2}.result-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+@media(max-width:680px){.shell{padding:14px 12px 24px}.brand-name{font-size:15px}.crest{width:42px;height:42px}.hero{margin:16px auto 19px}.hero h1{font-size:29px}.setup,.game-card{padding:17px 14px}.settings-grid{grid-template-columns:1fr;gap:0}.choice{padding:9px 12px;font-size:12px}.stat-grid{gap:6px}.stat{padding:10px 5px}.stat .k{font-size:10px}.stat .v{font-size:19px}.question-area{min-height:260px;padding:13px 0}.qword{font-size:clamp(30px,8vw,42px)}.romaji{font-size:clamp(18px,5.1vw,25px)}.typebox{padding:11px 8px;font-size:21px}.results{gap:5px}.results strong{font-size:21px}}
+
+/* v1.1 iPad / iPhone の画面キーボード対策：可視領域内にお題と入力を固定 */
+:root{--vv-top:0px;--vv-height:100dvh}
+body.playing{overflow:hidden;touch-action:pan-x}
+body.playing .top,body.playing .footer{display:none}
+body.playing .shell{max-width:none;margin:0;padding:0}
+body.playing #game-screen{
+  position:fixed;z-index:5;left:8px;right:8px;top:calc(var(--vv-top) + 4px);
+  max-height:calc(var(--vv-height) - 8px);overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
+}
+body.playing .game-card{max-width:1000px;padding:10px 15px;border-radius:15px;box-shadow:0 8px 25px #0006}
+body.playing .stat-grid{gap:6px}
+body.playing .stat{padding:5px 4px;border-radius:8px}
+body.playing .stat .k{font-size:10px}
+body.playing .stat .v{font-size:18px;line-height:1.25;margin-top:1px}
+body.playing .stat .v .s{font-size:10px}
+body.playing .timer-track{height:4px;margin:6px 0 4px}
+body.playing .question-area{min-height:0;padding:3px 0 5px;gap:0}
+body.playing .category-pill{font-size:10px;padding:2px 9px}
+body.playing .qword{font-size:clamp(27px,3.5vw,39px);line-height:1.23;margin:5px auto 3px}
+body.playing .reading{font-size:12px;margin:0 0 4px}
+body.playing .romaji{min-height:27px;font-size:clamp(17px,2.7vw,25px);line-height:1.25}
+body.playing .type-label{font-size:10px;margin:0 0 4px!important;line-height:1.2}
+body.playing .typebox{max-width:800px;padding:8px 12px;font-size:21px;min-height:42px}
+body.playing .message{font-size:11px;min-height:15px;margin:4px 0 2px}
+body.playing .game-actions{margin-top:2px}
+body.playing .game-actions .button{font-size:11px;padding:6px 14px;border-radius:8px}
+/* 可視領域が狭い場合は飾りを減らし、お題・読み・ローマ字・入力欄を優先 */
+body.playing.short-viewport .game-card{padding:6px 9px}
+body.playing.short-viewport .stat{padding:3px 2px}
+body.playing.short-viewport .stat .k{font-size:9px}
+body.playing.short-viewport .stat .v{font-size:15px}
+body.playing.short-viewport .timer-track{height:3px;margin:4px 0 2px}
+body.playing.short-viewport .qword{font-size:clamp(23px,3.2vw,32px);margin:3px auto 2px}
+body.playing.short-viewport .reading{font-size:11px;margin:0 0 2px}
+body.playing.short-viewport .romaji{min-height:23px;font-size:19px}
+body.playing.short-viewport .typebox{min-height:37px;padding:6px 8px;font-size:18px}
+body.playing.short-viewport .type-label{display:none!important}
+body.playing.short-viewport .game-actions{margin-top:0}
+body.playing.short-viewport .game-actions .button{padding:4px 10px}
+body.playing.tiny-viewport .stat-grid,body.playing.tiny-viewport .timer-track,
+body.playing.tiny-viewport .message,body.playing.tiny-viewport .game-actions{display:none}
+body.playing.tiny-viewport .game-card{padding:5px 8px}
+body.playing.tiny-viewport .qword{font-size:24px}
+@media (orientation:landscape){body.playing .game-card{max-width:1050px}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* v2.0 オリジナルRPG風UI：青いコマンド枠と金装飾・汎用ファンタジー風背景 */
+:root{--ink:#fff6db;--muted:#abbde1;--gold:#fbe6a1;--blue:#76cffe;--green:#82e8af;--red:#ff9585}
+body{background:radial-gradient(ellipse at 50% -15%,#264f94 0%,transparent 57%),radial-gradient(ellipse at 90% 90%,#122d78 0%,transparent 39%),#030c26;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+body:before{opacity:.43;background-size:410px 340px}
+.shell{max-width:1060px;padding-top:17px}.top{margin-bottom:11px;border-bottom:1px solid #b0ccf537;padding-bottom:13px}.overline{color:#f6d78a;letter-spacing:.16em}
+.brand-name{font-family:Georgia,"Hiragino Mincho ProN",serif;color:#fff3c8;text-shadow:0 2px 0 #714c20;font-size:19px}
+.crest{background:linear-gradient(135deg,#fee3a1,#9d671d);border:3px double #fff2d0;box-shadow:inset 0 0 0 3px #7a4e19,0 0 16px #f9c67637;border-radius:5px;color:#133565;font-size:31px}
+.hero{margin:12px auto 13px}.hero h1{font-family:Georgia,"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:900;font-size:clamp(24px,4vw,35px);color:#ffebac;background:none;text-shadow:0 3px 0 #5c3915,0 0 24px #f7ce8470;margin:5px 0 9px}.hero p{font-size:13px;line-height:1.7;margin:8px auto 0;color:#cad8ed}
+.world-preview{position:relative;max-width:850px;height:145px;margin:auto;border:3px ridge #dbbc70;box-shadow:inset 0 0 0 2px #0a2359,0 9px 32px #0009;overflow:hidden;border-radius:4px;background:#102857}.world-preview svg{display:block;width:100%;height:100%}.world-title{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:max-content;max-width:92%;font-size:12px;font-weight:900;color:#ffefd0;text-shadow:0 2px 3px #000,1px 0 #030b30,-1px 0 #030b30;letter-spacing:.12em}
+.card{position:relative;border-radius:7px;border:2px solid #d6ad58;background:linear-gradient(180deg,#124494 0%,#0b2d70 28%,#071948 100%);box-shadow:0 0 0 2px #08112e,0 0 0 4px #9f804d,inset 0 0 0 2px #417bc4,inset 0 10px 30px #10236199,0 16px 34px #0008}
+.setup{padding:17px 23px 19px;max-width:880px}.panel-name{text-align:center;font-family:Georgia,"Yu Mincho",serif;font-size:21px;font-weight:900;letter-spacing:.07em;color:#ffe9b2;text-shadow:0 2px #72461d;margin-bottom:4px}.ornament{color:#e1ba70;font-size:14px}.db-badge{text-align:center;font-size:11px;color:#9fe2ff;margin-bottom:15px;letter-spacing:.05em;font-weight:900}
+.section-label{font-size:13px;margin:0 0 9px;color:#ffe1a0;letter-spacing:.08em}.field{margin-bottom:17px}.settings-grid{gap:16px}.choice-row{gap:7px}
+.choice{background:linear-gradient(#102d77,#071847);border:1px solid #658abd;color:#f2e9ce;box-shadow:inset 1px 1px #93b2d33a,0 2px 0 #030c28;border-radius:3px;min-height:37px;padding:8px 13px;font-size:13px}.choice.active{background:linear-gradient(#3262b3,#1a3e92);border:1px solid #ffe3a0;box-shadow:0 0 0 1px #ffe8ae70,inset 0 0 12px #d8e9ff21;color:#fff6d7}.choice.active:before{content:'◆ ';font-size:10px;color:#ffdb81}
+.button{border-radius:4px;font-weight:900;letter-spacing:.07em}.primary{color:#211d12;background:linear-gradient(#fff4c6,#e9b95d 45%,#c9903f);box-shadow:0 4px 0 #855822,0 10px 20px #0008;border:1px solid #fff1c7}.secondary{color:#f5e8c5;background:linear-gradient(#315ba6,#102b6b);border:1px solid #e4c278;box-shadow:inset 0 1px #bddbff4a}.start{margin:1px auto 14px;min-width:265px;font-size:17px;padding:10px 24px}.hint{color:#b8c8e5;line-height:1.6}.record{margin-top:14px;color:#f1d48d;border-top:1px solid #e4c27950}
+.game-card{max-width:970px;padding:20px}.battle-head{display:flex;align-items:center;justify-content:space-between;gap:10px;color:#fce3a4;font-size:12px;font-weight:800;margin:0 3px 8px}.battle-level{color:#93dfff;font-size:12px}
+.stat{background:linear-gradient(180deg,#061949e5,#051231c7);border:1px solid #b8d8ff72;border-radius:3px}.stat .k{color:#bccce8}.stat .v{color:#fff6da;text-shadow:0 1px #000}.timer-track{background:#030c24;border:1px solid #89a7df44}.timer-bar{background:linear-gradient(90deg,#40bdff,#baf3ff)}
+.question-area{border:1px solid #8cb7e35a;background:linear-gradient(#1645868a,#081d549b);margin:10px auto 13px;border-radius:3px;min-height:260px;padding:15px 7px}
+.category-pill{color:#ffe2a4;border-color:#d5ac6182;background:#081b4a;padding:4px 16px;border-radius:3px}.qword{color:#fff2cb;text-shadow:0 2px #35588a,0 0 23px #e9b76c5c}.reading{color:#b9d4f4}.romaji .remain{color:#e6f4ff}.romaji .done{color:#75e8bb}.romaji .cursor{color:#fff0c5}.typebox{border:2px solid #dcc18a;border-radius:4px;background:#041238;color:#fff7d7;box-shadow:inset 0 3px 9px #0005}.typebox:focus{border-color:#ffe3a4;box-shadow:0 0 0 3px #ffebad36}.typebox.bad{border-color:#ff959b}.message{color:#dbe7f2}.footer{font-size:10px;margin-top:17px;max-width:900px;color:#849fc9}
+.result h2{font-family:Georgia,"Yu Mincho",serif;color:#ffebaf}.result .rank{color:#ffdfa1}.results>div{border:1px solid #7295d35c;border-radius:3px;background:#091c4b}.results strong{color:#fff6d1}.results span{color:#b6ceef}
+body.playing .game-card{border-radius:4px;padding:8px 12px;box-shadow:0 0 0 2px #08112e,0 0 0 3px #9f804d,inset 0 0 0 1px #417bc4}
+body.playing .battle-head{margin:0 0 4px;font-size:11px}body.playing .battle-level{font-size:11px}
+body.playing .question-area{min-height:0;margin:5px auto 5px;padding:3px 6px;border-color:#6aa0d562}
+body.playing .qword{margin:5px auto 3px}
+body.playing.short-viewport .battle-head{font-size:10px;margin:0 0 2px}body.playing.short-viewport .battle-level{font-size:10px}
+body.playing.short-viewport .question-area{padding:1px 4px;margin:2px auto 4px}
+body.playing.short-viewport .game-card{padding:4px 8px}
+body.playing.tiny-viewport .battle-head{display:none}
+@media(max-width:680px){.world-preview{height:115px}.hero h1{font-size:24px}.hero p{font-size:12px}.panel-name{font-size:18px}.setup{padding:15px 13px}.choice{padding:7px 10px;min-height:36px;font-size:12px}}
+@media (max-height:590px) and (orientation:landscape){body:not(.playing) .hero{margin:5px auto 7px}body:not(.playing) .hero h1{font-size:25px;margin:2px auto 5px}body:not(.playing) .world-preview{height:100px}body:not(.playing) .setup{padding:11px 16px}.hero p{font-size:12px}}
+
+/* v2.1 開始前の英字キーボード確認ダイアログ */
+body.keyboard-check-open{overflow:hidden}
+.keyboard-overlay{position:fixed;z-index:30;left:0;right:0;top:calc(var(--vv-top) + 0px);height:var(--vv-height);display:flex;align-items:center;justify-content:center;padding:8px 12px;overflow-y:auto;background:#030b23ee;overscroll-behavior:contain}
+.keyboard-card{width:100%;max-width:600px;margin:auto;max-height:100%;overflow-y:auto;padding:22px 22px 17px;text-align:center;border:3px double #d3af68;border-radius:6px;background:linear-gradient(170deg,#153a7d,#091a48 75%);box-shadow:0 10px 50px #000b,inset 0 0 0 3px #0a2055}
+.keyboard-icon{font-size:27px;margin-bottom:1px}.keyboard-title{font-size:clamp(19px,3vw,25px);color:#ffe6a2;font-weight:900;margin:8px 0}.keyboard-desc{font-size:13px;line-height:1.55;color:#d4e4ff;margin:4px 0 12px}
+.keyboard-answer-row{display:flex;justify-content:center;gap:12px;margin:14px auto 4px;flex-wrap:wrap}.keyboard-answer-row .button{flex:1;max-width:225px;min-width:115px}
+.keyboard-help{margin:10px auto 0;border-top:1px solid #d3af684f;padding:11px 0 0}.keyboard-help p{color:#dbe7ff;font-size:13px;line-height:1.55;margin:0 0 9px}.keyboard-help strong{color:#ffe6a2}.keyboard-test{display:block;width:100%;max-width:360px;margin:0 auto 9px;padding:11px 12px;border:2px solid #8fb9ff;border-radius:5px;background:#07132e;color:white;text-align:center;font:700 19px ui-monospace,monospace;outline:none}
+.keyboard-test:focus{border-color:#ffdf8a;box-shadow:0 0 0 3px #ffe6a226}.keyboard-return{display:block;margin:10px auto 0;background:transparent;border:0;color:#cadcff;text-decoration:underline;font-size:12px;padding:5px 12px;cursor:pointer}
+@media(max-height:430px){.keyboard-overlay{align-items:flex-start}.keyboard-card{padding:9px 14px 8px}.keyboard-icon{display:none}.keyboard-title{font-size:19px;margin:2px 0}.keyboard-desc{font-size:11px;margin:2px auto 6px}.keyboard-answer-row{margin:5px auto}.keyboard-answer-row .button{padding:7px 12px}.keyboard-help{margin-top:5px;padding-top:6px}.keyboard-help p{font-size:11px;line-height:1.4;margin-bottom:5px}.keyboard-test{padding:6px 9px;font-size:16px}.keyboard-return{margin:2px auto 0;padding:2px 8px}}
+
+/* v2.2 スマートフォン向け内蔵かなフリック盤 */
+.flick-display{width:100%;min-height:42px;max-width:620px;margin:2px auto 3px;text-align:center;color:#f5e6be;padding:6px 10px;border:1px solid #b89a5d;background:#071938;border-radius:4px;font-size:clamp(17px,4.6vw,24px);font-weight:800;line-height:1.35;overflow-wrap:anywhere}
+.flick-display-label{font-size:11px;color:#b9c9e6;margin-right:6px}.flick-pending{color:#ffe18b;border-bottom:2px solid #ffe18b}#flick-caret{color:#74dbe9;vertical-align:middle;font-size:14px}
+.flick-board{width:min(100%,390px);margin:5px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,clamp(50px,8.5dvh,69px));gap:6px;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none}
+.flick-key{position:relative;overflow:hidden;appearance:none;border:2px solid #d7bd7d;border-radius:8px;background:linear-gradient(155deg,#294b90,#102455 76%);box-shadow:inset 0 1px #b6dbff56,0 2px 0 #07122f;color:#fff2c9;cursor:pointer;touch-action:none;-webkit-tap-highlight-color:transparent;font-family:inherit}
+.flick-key:focus-visible{outline:3px solid #69d7f6;outline-offset:1px}
+.flick-key.pressed{background:linear-gradient(155deg,#497ac3,#284984);border-color:#ffebaa}
+.flick-main{font-size:clamp(23px,6vw,31px);font-weight:900;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1}
+.flick-key[data-role="mod"] .flick-main{font-size:clamp(16px,4.1vw,22px)}
+.flick-key[data-role="del"] .flick-main{font-size:clamp(19px,4vw,25px)}
+.flick-near{position:absolute;font-size:clamp(10px,2.65vw,12px);line-height:1.05;color:#c1d6fb;font-weight:800;pointer-events:none}
+.flick-near.left{left:8px;top:50%;transform:translateY(-50%)}.flick-near.right{right:8px;top:50%;transform:translateY(-50%)}.flick-near.up{left:50%;top:3px;transform:translateX(-50%)}.flick-near.down{left:50%;bottom:3px;transform:translateX(-50%)}
+.flick-key[data-role="mod"] .flick-near{font-size:9px}.flick-key[data-role="del"] .flick-near{font-size:10px}
+.flick-guide{text-align:center;color:#b0c7e3;font-size:10px;line-height:1.35;margin:5px auto 1px;max-width:600px}
+body.playing.flick-mode .type-label,body.playing.flick-mode .typebox{display:none!important}
+body.playing.flick-mode .question-area{padding:1px 0 2px}body.playing.flick-mode .qword{font-size:clamp(25px,6.3vw,35px);margin:4px auto 1px}
+body.playing.flick-mode .reading{font-size:12px;margin:0 0 2px}body.playing.flick-mode .romaji{min-height:20px;font-size:clamp(16px,4.4vw,23px)}
+body.playing.flick-mode .game-card{padding:9px 11px}body.playing.flick-mode .message{min-height:14px;margin:3px auto;font-size:11px}
+body.playing.flick-mode .game-actions{margin-top:5px}
+body.playing.flick-mode .flick-wrong{animation:flickerror .15s ease-out 2}@keyframes flickerror{50%{border-color:#ff7575;background:#632848}}
+@media(max-width:430px){body.playing.flick-mode .battle-head{margin:0 1px 4px}body.playing.flick-mode .stat{padding:5px 2px}body.playing.flick-mode .stat .k{font-size:9px}body.playing.flick-mode .stat .v{font-size:16px}body.playing.flick-mode .timer-track{margin:5px 0 3px}}
+@media(max-height:690px) and (orientation:portrait){.flick-board{grid-template-rows:repeat(4,clamp(44px,8.1dvh,58px));gap:5px}body.playing.flick-mode .battle-head{margin-bottom:3px}body.playing.flick-mode .qword{font-size:26px}body.playing.flick-mode .game-actions .button{padding:5px 10px}}
+@media(orientation:landscape) and (max-height:550px){
+ body.playing.flick-mode .game-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(270px,44%);grid-template-areas:"head board" "stats board" "timer board" "question board" "input board" "message board" "actions board" "guide board";gap:2px 13px;padding:6px 11px}
+ body.playing.flick-mode .battle-head{grid-area:head;margin:0 0 2px}body.playing.flick-mode .stat-grid{grid-area:stats}body.playing.flick-mode .timer-track{grid-area:timer;margin:2px 0}body.playing.flick-mode .question-area{grid-area:question;padding:1px 0}
+ body.playing.flick-mode .flick-display{grid-area:input;min-height:31px;margin:1px auto;padding:3px 6px;font-size:17px}body.playing.flick-mode .message{grid-area:message;margin:0;font-size:10px}body.playing.flick-mode .game-actions{grid-area:actions;margin-top:2px}body.playing.flick-mode .flick-guide{grid-area:guide;font-size:9px;margin:0}
+ body.playing.flick-mode .flick-board{grid-area:board;grid-template-rows:repeat(4,minmax(36px,1fr));max-width:380px;height:calc(var(--vv-height) - 24px);margin:0;align-self:center;gap:5px}
+ body.playing.flick-mode .qword{font-size:clamp(22px,3.2vw,30px)}body.playing.flick-mode .reading{font-size:11px}body.playing.flick-mode .romaji{font-size:18px}
+ body.playing.flick-mode .stat .k{font-size:9px}body.playing.flick-mode .stat .v{font-size:16px}
+}
+
+/* v2.3 ぼうけんのスコアランキング（ローカル保存・条件別トップ10） */
+.ranking-control{text-align:center;margin:12px auto 4px}.ranking-open{font-size:14px;padding:10px 21px}
+.ranking-caption{font-size:11px;color:#b3cae7;line-height:1.6;margin:8px auto 4px;text-align:center}
+.ranking-block{margin:16px auto 20px;border:1px solid #d3b27077;background:#061a4ea8;padding:11px 12px 12px;border-radius:5px}
+.ranking-heading{font-size:18px;color:#ffde92;font-family:Georgia,"Yu Mincho",serif;font-weight:900;letter-spacing:.06em;margin:3px auto 7px;text-align:center}
+.ranking-condition{text-align:center;color:#bcd8ff;line-height:1.5;font-size:11px;margin-bottom:9px}
+.ranking-table{width:100%;table-layout:fixed;border-spacing:0 4px;border-collapse:separate;font-size:13px;text-align:center}
+.ranking-table th{font-size:10px;color:#b6d3ef;font-weight:800;letter-spacing:.04em;padding:5px 3px}
+.ranking-table td{border-top:1px solid #567cba73;border-bottom:1px solid #567cba73;padding:8px 4px;background:#102957;color:#e6f0ff;vertical-align:middle;font-variant-numeric:tabular-nums}
+.ranking-table td:first-child{border-left:1px solid #567cba73;border-radius:3px 0 0 3px;font-weight:900;color:#ffd888}
+.ranking-table td:last-child{border-right:1px solid #567cba73;border-radius:0 3px 3px 0}
+.ranking-table .rank-current td{background:#2b4781;border-color:#f1cd7e;box-shadow:inset 0 0 0 1px #f1d28944}
+.ranking-table .rank-score{font-weight:900;color:#fff1c7;font-size:15px;white-space:nowrap}
+.ranking-table .rank-date{font-size:10px;line-height:1.4;color:#bfcee5}
+.ranking-empty{padding:16px 6px;color:#c9d8f0;text-align:center;font-size:13px;line-height:1.8}
+.result-rank-status{color:#ffe8ab;border:1px solid #d4b06b66;border-radius:4px;background:#243869bf;line-height:1.7;padding:9px 12px;margin:13px auto 5px;font-weight:900}
+.ranking-overlay{position:fixed;inset:0;z-index:45;display:flex;align-items:center;justify-content:center;padding:12px;background:#02091fe9;overscroll-behavior:contain}
+.ranking-dialog{width:min(100%,660px);max-height:min(93dvh,760px);display:flex;flex-direction:column;overflow:hidden;border:3px double #e2c07b;border-radius:6px;background:linear-gradient(#14418a,#071a49);box-shadow:0 22px 60px #000c,inset 0 0 0 2px #2a5baa;padding:15px 14px}
+.ranking-dialog .ranking-block{margin:5px 0 12px;overflow-y:auto;flex:1;min-height:0;overscroll-behavior:contain}
+.ranking-dialog .button{align-self:center;padding:9px 24px}
+@media(max-width:440px){.ranking-table{font-size:12px}.ranking-table .rank-score{font-size:13px}.ranking-table td{padding:8px 2px}.ranking-table .rank-date{font-size:9px}.ranking-block{padding:9px 6px}.ranking-dialog{padding:11px 9px}.ranking-heading{font-size:17px}.result-rank-status{font-size:13px}}
+
+/* v2.4: フリーモード・成長型冒険モード */
+.mode-select{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 20px}
+.mode-select button{background:linear-gradient(155deg,#143d7c,#091d4d);border:2px solid #5f7da9;color:#e6f3ff;min-height:90px;border-radius:9px;padding:12px 10px;text-align:left;cursor:pointer;font:inherit}
+.mode-select button[aria-pressed="true"]{border-color:#ffe3a0;background:linear-gradient(155deg,#345c9f,#17366d);box-shadow:inset 0 0 0 1px #f9cd7447,0 0 19px #b0d6ff22}
+.mode-select .mode-title{display:block;color:#ffe6a3;font-weight:900;font-size:17px;margin-bottom:4px}
+.mode-select .mode-note{display:block;font-size:11px;color:#c3d5f3;line-height:1.5}
+.adv-explain{background:#0a214f;border:1px solid #c9ab6877;padding:14px 17px;margin:1px 0 20px;border-radius:6px}
+.adv-explain h3{margin:0 0 9px;color:#ffe5aa;font-size:16px}
+.adv-explain p{margin:5px 0;color:#d3e2fb;font-size:12px;line-height:1.7}
+.adv-explain .adventure-record{border-top:1px solid #c8a86662;margin-top:9px;padding-top:10px;color:#ffe7a9;font-size:13px;font-weight:800}
+.adventure-hud{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:4px 0 7px}
+.hud-item{background:#071834d9;border:1px solid #537aae99;border-radius:6px;padding:6px 9px}
+.hud-labels{display:flex;justify-content:space-between;gap:6px;color:#f4e0ac;font-size:11px;font-weight:900;margin-bottom:4px}
+.hud-meter{height:8px;background:#091121;border:1px solid #57759f99;border-radius:20px;overflow:hidden}
+.hud-meter span{display:block;height:100%;width:100%;background:linear-gradient(90deg,#df445c,#ff9879);transition:width .18s linear}
+.hud-item.xp .hud-meter span{background:linear-gradient(90deg,#3ea7fb,#ffe396)}
+.adventure-level-announcement{min-height:0;text-align:center;color:#ffe19a;font-weight:900;font-size:12px;line-height:1.25}
+.adventure-level-announcement.active{animation:levelShine .55s ease-out}
+@keyframes levelShine{0%{transform:scale(.9);filter:brightness(1)}50%{transform:scale(1.06);filter:brightness(1.6)}100%{transform:scale(1);filter:brightness(1)}}
+body.playing.adventure-mode .timer-track{display:none}
+body.playing.adventure-mode .qword{max-width:100%;font-size:clamp(22px,3.8vw,36px);line-height:1.3}
+body.playing.adventure-mode .reading{overflow-wrap:anywhere}
+body.playing.adventure-mode .romaji{font-size:clamp(15px,2.5vw,23px);overflow-wrap:anywhere}
+body.playing.adventure-mode .flick-guide{font-size:9px}
+body.playing.short-viewport.adventure-mode .hud-item{padding:2px 6px}
+body.playing.short-viewport.adventure-mode .hud-labels{font-size:10px;margin-bottom:2px}
+body.playing.short-viewport.adventure-mode .hud-meter{height:5px}
+body.playing.tiny-viewport.adventure-mode .adventure-hud{display:none}
+body.playing.tiny-viewport.adventure-mode .battle-head{margin-bottom:2px}
+.adv-mini-hp{font-size:11px;color:#ffc1ba;font-weight:900;margin-left:7px}
+.game-over .result-rank{color:#ff849a}
+#result-adventure-details{margin:15px 0 4px;color:#ffe3a6;font-weight:800;line-height:1.65;border:1px solid #c7a16e66;padding:11px 9px;border-radius:5px;background:#101f4c}
+@media(max-width:520px){.mode-select .mode-title{font-size:15px}.mode-select button{padding:9px 8px;min-height:87px}.mode-select .mode-note{font-size:10px}.adventure-hud{gap:5px}.hud-item{padding:4px 6px}.hud-labels{font-size:10px}}
+@media(orientation:landscape) and (max-height:500px){body.playing.flick-mode.adventure-mode .game-card{gap:1px 10px}body.playing.flick-mode.adventure-mode .adventure-hud{grid-area:timer;margin:1px 0}body.playing.flick-mode.adventure-mode .adventure-level-announcement{display:none}body.playing.flick-mode.adventure-mode .battle-head{grid-area:head}body.playing.flick-mode.adventure-mode .stat-grid{grid-area:stats}}
+
+/* v2.7 60秒タイムアタック・3モード選択 */
+.mode-select{grid-template-columns:repeat(3,minmax(0,1fr))}
+.timeattack-explain{border-color:#88d6f6a3;background:linear-gradient(145deg,#102f60,#0a214f)}
+.timeattack-explain h3{color:#9cecff}
+.ta-stage-badge{color:#9cecff;font-size:11px;font-weight:900;margin-left:5px;white-space:nowrap}
+body.playing.timeattack-mode .timer-bar{background:linear-gradient(90deg,#42d6ed,#8df7ff)}
+body.playing.timeattack-mode .timer-bar.urgent{background:linear-gradient(90deg,#f45f6a,#ffd271)}
+body.playing.timeattack-mode #quest-level{color:#a6efff}
+@media(max-width:660px){.mode-select{grid-template-columns:1fr;gap:7px}.mode-select button{min-height:58px;padding:8px 11px}.mode-select .mode-title{font-size:15px;margin-bottom:1px}.mode-select .mode-note{font-size:11px}}
+@media(min-width:661px) and (max-width:820px){.mode-select button{padding:10px 8px}.mode-select .mode-title{font-size:15px}}
+
+/* v2.5 称号コレクション：既存ランキングとは独立したローカル保存 */
+.titles-control{text-align:center;margin:11px auto 0}
+.titles-summary{font-size:12px;color:#ffdf9d;margin:8px 0 0;line-height:1.6}
+.titles-open{padding:10px 22px;font-size:14px}
+.titles-dialog{width:min(94vw,760px);max-height:min(88dvh,830px);overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(156deg,#123a84,#071536 78%);border:2px solid #f0c57c;border-radius:12px;padding:17px 16px 20px;box-shadow:0 0 0 4px #203f72,0 24px 85px #000b;color:#f5f8ff}
+.titles-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.titles-counter{font-size:14px;font-weight:900;color:#ffe6ab;margin-left:auto}.titles-x{border:1px solid #edc87d;border-radius:7px;background:#244c85;color:#fff;cursor:pointer;font-size:20px;line-height:1;width:32px;height:32px;flex-shrink:0;touch-action:manipulation}
+.titles-current{font-size:13px;margin:8px 0 14px;color:#e1ecff}
+.titles-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:16px}
+.title-tile{display:flex;flex-direction:column;min-width:0;gap:5px;padding:12px;text-align:left;border:1px solid #b6c5e17e;border-radius:9px;background:#0c2253}
+.title-tile.unlocked{border-color:#edce85;background:linear-gradient(130deg,#27477b,#142756)}
+.title-tile.equipped{outline:2px solid #fce3a6;outline-offset:-2px}
+.title-tile .title-name{font-size:15px;font-weight:900;color:#ffe1a0;overflow-wrap:anywhere}
+.title-tile.locked .title-name{color:#afbbd2}
+.title-tile .title-rule{font-size:12px;color:#c1d2ec;line-height:1.5;flex:1}
+.title-tile .title-state{font-size:11px;color:#ffdf96;font-weight:900}
+.title-tile .title-equip{align-self:flex-start;background:#315f9d;color:#fff5df;border:1px solid #f0d397;border-radius:7px;padding:6px 10px;font:inherit;font-size:12px;font-weight:800;cursor:pointer;touch-action:manipulation}
+.title-tile .title-equip[disabled]{opacity:.66;cursor:default}
+.result-titles{border:1px solid #dcbb75a1;background:#173360b8;border-radius:9px;padding:10px;margin:12px auto;color:#ffe1a0;font-size:13px;line-height:1.7}
+.result-titles strong{display:block;font-size:15px;margin-bottom:2px}
+.titles-close{display:block;margin:10px auto 0}
+@media(max-width:480px){.titles-grid{grid-template-columns:1fr}.titles-dialog{padding:14px 10px}.title-tile{padding:10px}.result-titles{padding:8px}}
+</style>
+</head>
+<body><main class="shell">
+<header class="top"><div class="brand"><div class="crest" aria-hidden="true">✦</div><div><div class="overline">WORD QUEST · TYPING ADVENTURE</div><div class="brand-name">タイピング冒険録</div></div></div><span class="mini" id="version">RPG風デザイン v2.7</span></header>
+<section id="setup-screen">
+<div class="hero"><div class="overline">◇ タイピング冒険録 ◇</div><h1>ことばで ひらく 冒険の扉</h1>
+<div class="world-preview" aria-hidden="true"><svg viewBox="0 0 940 170" preserveAspectRatio="xMidYMid slice" role="presentation"><defs><linearGradient id="sk" x2="0" y2="1"><stop stop-color="#091b4b"/><stop offset=".73" stop-color="#2053a3"/><stop offset="1" stop-color="#63a8bd"/></linearGradient><linearGradient id="hi" x2="0" y2="1"><stop stop-color="#2c70ab"/><stop offset="1" stop-color="#0a2058"/></linearGradient></defs><rect width="940" height="170" fill="url(#sk)"/><circle cx="745" cy="41" r="24" fill="#f8e6ad" opacity=".93"/><circle cx="745" cy="41" r="38" fill="#fff0b5" opacity=".09"/><g fill="#fff6d2"><path d="M92 19v10 M87 24h10 M208 39v8 M204 43h8 M376 18v8 M372 22h8 M596 21v10 M591 26h10 M845 76v9 M841 80h8" stroke="#e9ddbc" stroke-width="1.7"/><circle cx="162" cy="67" r="1.5"/><circle cx="505" cy="31" r="1.3"/><circle cx="698" cy="92" r="1.2"/></g><path d="M0 116L80 69 155 117 246 62 335 112 403 83 498 121 604 71 723 119 846 58 940 110V170H0Z" fill="#204c86" opacity=".8"/><path d="M0 140L118 116 210 140 290 94 371 141 460 108 552 143 666 106 767 139 861 107 940 131V170H0Z" fill="url(#hi)"/><g fill="#07163e" stroke="#93b0b3" stroke-width="1"><path d="M416 140V99h17V72h28V52h18V72h28v27h17v41z"/><path d="M416 94l9-17 9 17M451 65l19-26 19 26M506 93l9-17 9 17"/><path d="M405 140h128v32H405z"/></g><path d="M462 140v-22a10 10 0 0 1 20 0v22" fill="#ecc56f"/><g fill="#ffe9a5"><rect x="443" y="90" width="7" height="12"/><rect x="492" y="90" width="7" height="12"/><rect x="465" y="78" width="7" height="12"/></g><path d="M0 153q130-23 246 0 70 11 175-7 120-15 221 6 160-26 298 4v14H0" fill="#09183f"/></svg><div class="world-title">剣と魔法のことばを 打ちこなせ！</div></div>
+<p>呪文・モンスター・道具・職業・特技・冒険の用語が出題されます。</p></div>
+<div class="card setup"><div class="panel-name"><span class="ornament">✥</span> ぼうけんのじゅんび <span class="ornament">✥</span></div><div class="db-badge" id="word-total">問題データを読み込み中</div>
+<div class="field"><p class="section-label">◆ あそびかたを えらぶ</p>
+<div class="mode-select" role="group" aria-label="ゲームモード">
+ <button type="button" id="choose-free" aria-pressed="true"><span class="mode-title">⚔ フリーモード</span><span class="mode-note">ことば・難易度・時間をえらんで練習</span></button>
+ <button type="button" id="choose-adventure" aria-pressed="false"><span class="mode-title">✦ 冒険モード</span><span class="mode-note">Lv.1から挑戦！ ミスでHPが減る</span></button>
+ <button type="button" id="choose-timeattack" aria-pressed="false"><span class="mode-title">⏱ タイムアタック</span><span class="mode-note">60秒で何問？ 5問ごとに難化！</span></button>
+</div></div>
+<div class="field"><p class="section-label">◆ 入力方法を えらぶ</p><div class="choice-row" id="mode-options" role="group" aria-label="入力方法"></div></div>
+<div id="free-settings"><div class="field"><p class="section-label">◆ どんな ことばに挑む？</p><div class="choice-row" id="category-options" role="group" aria-label="出題カテゴリー"></div></div>
+<div class="settings-grid"><div class="field"><p class="section-label">◆ 難易度</p><div class="choice-row" id="difficulty-options" role="group" aria-label="難易度"></div></div><div class="field"><p class="section-label">◆ ぼうけん時間</p><div class="choice-row" id="time-options" role="group" aria-label="制限時間"></div></div></div>
+</div>
+<div id="adventure-settings" class="adv-explain hide"><h3>✦ Lv.1からはじまる 冒険</h3>
+<p>最初は短い単語から。正解ごとに経験値がたまり、レベルアップで出題が難しくなります。<strong>Lv.15から文章問題</strong>が登場！</p>
+<p>HP100でスタート。ミスするたびにHP−10。HPが0になるとゲームオーバーです。レベルアップするとHPが15回復します。</p>
+<div id="adventure-record" class="adventure-record">最高到達レベル：まだありません</div></div>
+<div id="timeattack-settings" class="adv-explain timeattack-explain hide">
+ <h3>⏱ 60秒チャレンジ！</h3>
+ <p>出題は<strong>単語のみ</strong>。短い単語から始まり、<strong>5問クリアするたびに難易度アップ</strong>！ 20問クリア後は最難関の長い単語が出題されます。</p>
+ <p>ミスしても時間は減り続けます。文章問題・HP・レベル制はありません。クリア問題数でベスト10に挑戦！</p>
+ <div id="timeattack-record" class="adventure-record">最高記録：まだありません</div>
+</div>
+<button class="button primary start" id="start-btn">▶　ぼうけんを はじめる</button><div class="hint" id="mode-hint">表示されたお題をローマ字で入力。<br>「shi / si」「chi / ti」などの別表記にも対応しています。<br>英字キーボードの確認後に始まります。</div>
+<div class="record" id="home-record">☆ 最高記録：まだありません</div>
+<div class="ranking-control"><button class="button secondary ranking-open" type="button" id="ranking-open">🏆 ベスト10を みる</button><p class="ranking-caption">入力方式・ジャンル・難易度・時間ごとにランキングを保存します。</p></div>
+<div class="titles-control"><button class="button secondary titles-open" type="button" id="titles-open">🏅 称号コレクションを みる</button><div class="titles-summary" id="titles-summary">称号を 読み込み中…</div></div></div></section>
+<section id="game-screen" class="hide" aria-live="off"><div class="card game-card"><div class="battle-head"><span class="battle-led">✦　たいぴんぐの たたかい</span><span class="battle-level" id="quest-level">冒険者 Lv.1</span><span class="adv-mini-hp hide" id="adv-mini-hp">HP 100</span></div><div class="stat-grid"><div class="stat"><div class="k" id="resource-label">のこり時間</div><div class="v" id="time-remaining">60<span class="s"> 秒</span></div></div><div class="stat"><div class="k">クリアした問題</div><div class="v" id="questions-done">0</div></div><div class="stat"><div class="k">ミスタイプ</div><div class="v" id="mistakes">0</div></div><div class="stat"><div class="k">コンボ</div><div class="v" id="combo">0</div></div></div><div class="timer-track"><div class="timer-bar" id="timer-bar"></div></div>
+<div id="adventure-hud" class="adventure-hud hide" aria-live="polite"><div class="hud-item"><div class="hud-labels"><span>❤ HP</span><span id="adventure-hp-text">100 / 100</span></div><div class="hud-meter"><span id="adventure-hp-bar"></span></div></div><div class="hud-item xp"><div class="hud-labels"><span>✦ 経験値</span><span id="adventure-xp-text">0 / 30</span></div><div class="hud-meter"><span id="adventure-xp-bar"></span></div></div></div>
+<div id="adventure-level-announcement" class="adventure-level-announcement hide"></div>
+<div class="question-area"><div class="category-pill" id="question-cat">呪文</div><div class="qword" id="question-word">メラゾーマ</div><div class="reading" id="question-reading">めらぞーま</div><div class="romaji" id="roman-target" aria-label="入力するローマ字">merazo-ma</div></div>
+<label for="type-input" class="hint type-label" style="display:block;margin-bottom:9px">↓ ここにローマ字を入力 ↓</label><input class="typebox" id="type-input" type="text" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" inputmode="url" lang="en" enterkeyhint="done" aria-label="ローマ字入力欄" placeholder="ローマ字を入力" maxlength="120"/>
+<div id="flick-display" class="flick-display hide" aria-label="かな入力の進み具合"><span class="flick-display-label">入力中</span> <span id="flick-typed"></span><span id="flick-pending" class="flick-pending"></span><span id="flick-caret">▍</span></div>
+<div class="message" id="game-message">お題を打って けいけんちを ためよう！</div>
+<div id="flick-board" class="flick-board hide" role="group" aria-label="かなフリックキーボード"></div>
+<div id="flick-guide" class="flick-guide hide">キーをタップ／上下左右にフリック　・　゛゜小で文字変換　・　「わ」右フリックで ー</div><div class="game-actions"><button class="button secondary" id="quit-btn">▶ ぼうけんを おえる</button></div></div></section>
+<section id="result-screen" class="hide"><div class="card result"><div class="overline">✦　ぼうけんの きろく　✦</div><h2>冒険の結果</h2><div class="rank" id="result-rank">S</div><p id="result-comment">見事なタイピング！</p><div id="result-adventure-details" class="hide"></div><div id="result-titles" class="result-titles hide" aria-live="polite"></div><div class="results"><div><strong id="result-clears">0</strong><span>クリア問題</span></div><div><strong id="result-accuracy">100%</strong><span>正確率</span></div><div><strong id="result-cpm">0</strong><span id="result-speed-label">正打鍵 / 分</span></div><div><strong id="result-maxcombo">0</strong><span>最大コンボ</span></div><div><strong id="result-score">0</strong><span>スコア</span></div><div><strong id="result-mistakes">0</strong><span>ミスタイプ</span></div></div><div id="result-rank-status" class="result-rank-status" aria-live="polite">今回の順位を集計中…</div><section class="ranking-block" aria-label="今回の条件のベスト10"><div class="ranking-heading" id="result-rank-heading">🏆 スコアランキング BEST 10</div><div class="ranking-condition" id="result-rank-condition"></div><div id="result-rank-list"></div></section><div class="result-buttons"><button class="button primary" id="retry-btn">▶ もう一度 冒険</button><button class="button secondary" id="home-btn">じゅんびへ もどる</button></div></div></section>
+
+<!-- スタート直前に確認。いいえならキーボードを表示して言語を選べる -->
+<div id="keyboard-overlay" class="keyboard-overlay hide" role="dialog" aria-modal="true" aria-labelledby="keyboard-title" aria-describedby="keyboard-desc">
+  <div class="keyboard-card">
+    <div class="keyboard-icon" aria-hidden="true">⌨️</div>
+    <div class="overline">✦ ぼうけんを はじめるまえに ✦</div>
+    <h2 id="keyboard-title" class="keyboard-title">英字キーボードになっていますか？</h2>
+    <p id="keyboard-desc" class="keyboard-desc">英字キーボードなら「はい」を選んでください。<br>日本語キーボードの場合は「いいえ」を選んで切り替えましょう。</p>
+    <div id="keyboard-confirm-choices" class="keyboard-answer-row">
+      <button class="button primary" id="keyboard-yes" type="button">▶ はい（スタート）</button>
+      <button class="button secondary" id="keyboard-no" type="button">いいえ</button>
+    </div>
+    <div id="keyboard-help" class="keyboard-help hide">
+      <p><strong>英字キーボードに切り替えてください。</strong><br>下の欄をタップし、iPadの<strong>地球儀キー（🌐）</strong>などから「English」を選択してください。<br>英字になったら「はい」を押して開始します。</p>
+      <input id="keyboard-test" class="keyboard-test" type="text" inputmode="url" lang="en" autocapitalize="none" autocorrect="off" autocomplete="off" spellcheck="false" enterkeyhint="done" placeholder="ここで abc を試し打ち" aria-label="英字キーボード確認用入力欄"/>
+      <div class="keyboard-answer-row"><button class="button primary" id="keyboard-ready" type="button">▶ はい（スタート）</button></div>
+    </div>
+    <button class="keyboard-return" id="keyboard-cancel" type="button">じゅんび画面へ もどる</button>
+  </div>
+</div>
+<div id="ranking-overlay" class="ranking-overlay hide" role="dialog" aria-modal="true" aria-labelledby="ranking-dialog-title">
+  <div class="ranking-dialog"><div class="ranking-heading" id="ranking-dialog-title">🏆 スコアランキング BEST 10</div>
+    <div class="ranking-block"><div class="ranking-condition" id="ranking-modal-condition"></div><div id="ranking-modal-list"></div></div>
+    <button type="button" class="button secondary" id="ranking-close">じゅんびへ もどる</button>
+  </div>
+</div>
+<div id="titles-overlay" class="ranking-overlay hide" role="dialog" aria-modal="true" aria-labelledby="titles-dialog-title">
+ <div class="titles-dialog"><div class="titles-head"><div class="ranking-heading" id="titles-dialog-title">🏅 称号コレクション</div><span id="titles-counter" class="titles-counter"></span><button type="button" id="titles-x" class="titles-x" aria-label="称号一覧を閉じる">×</button></div>
+ <p id="titles-current" class="titles-current"></p>
+ <div id="titles-list" class="titles-grid"></div>
+ <button class="button secondary titles-close" type="button" id="titles-close">じゅんびへ もどる</button></div>
+</div>
+<footer class="footer">ドラゴンクエストXに登場する用語を題材にした非公式のファン制作ゲームです。公式作品ではありません。<br>公式の画像・音楽・ロゴは使用していません。記録はこのブラウザ内に保存されます。ほかの端末には同期されません。</footer>
+</main>
+<script>
+'use strict';
+// 形式: 表示名 | よみ（ひらがな） | カテゴリー
+const RAW = `
+ホイミ|ほいみ|spell
+ベホイミ|べほいみ|spell
+ベホイム|べほいむ|spell
+ベホマラー|べほまらー|spell
+ベホマ|べほま|spell
+ザオ|ざお|spell
+ザオラル|ざおらる|spell
+ザオリク|ざおりく|spell
+キアリー|きありー|spell
+キアリク|きありく|spell
+リホイミ|りほいみ|spell
+メラ|めら|spell
+メラミ|めらみ|spell
+メラゾーマ|めらぞーま|spell
+メラガイアー|めらがいあー|spell
+ヒャド|ひゃど|spell
+ヒャダルコ|ひゃだるこ|spell
+マヒャド|まひゃど|spell
+マヒャデドス|まひゃでどす|spell
+イオ|いお|spell
+イオラ|いおら|spell
+イオナズン|いおなずん|spell
+イオグランデ|いおぐらんで|spell
+バギ|ばぎ|spell
+バギマ|ばぎま|spell
+バギクロス|ばぎくろす|spell
+バギムーチョ|ばぎむーちょ|spell
+ドルマ|どるま|spell
+ドルクマ|どるくま|spell
+ドルモーア|どるもーあ|spell
+ドルマドン|どるまどん|spell
+ギラ|ぎら|spell
+ベギラマ|べぎらま|spell
+ベギラゴン|べぎらごん|spell
+バイキルト|ばいきると|spell
+スクルト|すくると|spell
+ピオリム|ぴおりむ|spell
+フバーハ|ふばーは|spell
+ルカニ|るかに|spell
+ルカナン|るかなん|spell
+マヌーサ|まぬーさ|spell
+ラリホー|らりほー|spell
+マホカンタ|まほかんた|spell
+マジックバリア|まじっくばりあ|spell
+メドローア|めどろーあ|spell
+スライム|すらいむ|monster
+スライムベス|すらいむべす|monster
+メタルスライム|めたるすらいむ|monster
+はぐれメタル|はぐれめたる|monster
+メタルキング|めたるきんぐ|monster
+キングスライム|きんぐすらいむ|monster
+スライムナイト|すらいむないと|monster
+ホイミスライム|ほいみすらいむ|monster
+ドラキー|どらきー|monster
+ドラキーマ|どらきーま|monster
+キメラ|きめら|monster
+ねこまどう|ねこまどう|monster
+モーモン|もーもん|monster
+ピンクモーモン|ぴんくもーもん|monster
+プリズニャン|ぷりずにゃん|monster
+いたずらもぐら|いたずらもぐら|monster
+おどるほうせき|おどるほうせき|monster
+キラーマシン|きらーましん|monster
+バトルレックス|ばとるれっくす|monster
+ゴーレム|ごーれむ|monster
+くさったしたい|くさったしたい|monster
+ベビーサタン|べびーさたん|monster
+リザードマン|りざーどまん|monster
+アークデーモン|あーくでーもん|monster
+ボストロール|ぼすとろーる|monster
+ドラゴン|どらごん|monster
+ドラゴンガイア|どらごんがいあ|monster
+アトラス|あとらす|monster
+バズズ|ばずず|monster
+ベリアル|べりある|monster
+レグナード|れぐなーど|monster
+ダークキング|だーくきんぐ|monster
+メイヴ|めいヴ|monster
+スコルパイド|すこるぱいど|monster
+ジェルザーク|じぇるざーく|monster
+デルメゼ|でるめぜ|monster
+バラシュナ|ばらしゅな|monster
+やくそう|やくそう|item
+上やくそう|じょうやくそう|item
+特やくそう|とくやくそう|item
+せかいじゅの葉|せかいじゅのは|item
+せかいじゅのしずく|せかいじゅのしずく|item
+まほうの小ビン|まほうのこびん|item
+まほうのせいすい|まほうのせいすい|item
+けんじゃのせいすい|けんじゃのせいすい|item
+ようせいの霊薬|ようせいのれいやく|item
+エルフの飲み薬|えるふののみぐすり|item
+どくけしそう|どくけしそう|item
+まんげつそう|まんげつそう|item
+ふくびき券|ふくびきけん|item
+ふくびき補助券|ふくびきほじょけん|item
+元気玉|げんきだま|item
+超元気玉|ちょうげんきだま|item
+小元気玉|しょうげんきだま|item
+メタル迷宮招待券|めたるめいきゅうしょうたいけん|item
+ボスコイン|ぼすこいん|item
+きんかい|きんかい|item
+ちいさなメダル|ちいさなめだる|item
+おたからの花びら|おたからのはなびら|item
+おみくじボックス|おみくじぼっくす|item
+ドルセリン|どるせりん|item
+おうごんのかけら|おうごんのかけら|item
+身代わりのコイン|みがわりのこいん|item
+戦士|せんし|job
+僧侶|そうりょ|job
+魔法使い|まほうつかい|job
+武闘家|ぶとうか|job
+盗賊|とうぞく|job
+旅芸人|たびげいにん|job
+パラディン|ぱらでぃん|job
+魔法戦士|まほうせんし|job
+レンジャー|れんじゃー|job
+賢者|けんじゃ|job
+スーパースター|すーぱーすたー|job
+バトルマスター|ばとるますたー|job
+まもの使い|まものつかい|job
+どうぐ使い|どうぐつかい|job
+踊り子|おどりこ|job
+占い師|うらないし|job
+天地雷鳴士|てんちらいめいし|job
+遊び人|あそびにん|job
+デスマスター|ですますたー|job
+魔剣士|まけんし|job
+海賊|かいぞく|job
+ガーディアン|がーでぃあん|job
+竜術士|りゅうじゅつし|job
+隠者|いんじゃ|job
+マホトラ|まほとら|spell
+マホトーン|まほとーん|spell
+マホステ|まほすて|spell
+マホキテ|まほきて|spell
+バーハ|ばーは|spell
+スカラ|すから|spell
+ピオラ|ぴおら|spell
+バイシオン|ばいしおん|spell
+ヘナトス|へなとす|spell
+ボミエ|ぼみえ|spell
+ボミオス|ぼみおす|spell
+ディバインスペル|でぃばいんすぺる|spell
+マヌーハ|まぬーは|spell
+ザメハ|ざめは|spell
+ザキ|ざき|spell
+ザラキ|ざらき|spell
+イオマータ|いおまーた|spell
+ベホマズン|べほまずん|spell
+パルプンテ|ぱるぷんて|spell
+ももんじゃ|ももんじゃ|monster
+おおきづち|おおきづち|monster
+ブラウニー|ぶらうにー|monster
+メイジドラキー|めいじどらきー|monster
+タホドラキー|たほどらきー|monster
+バブルスライム|ばぶるすらいむ|monster
+スライムタワー|すらいむたわー|monster
+スライムつむり|すらいむつむり|monster
+マリンスライム|まりんすらいむ|monster
+ベホマスライム|べほますらいむ|monster
+エンゼルスライム|えんぜるすらいむ|monster
+ゴールデンスライム|ごーるでんすらいむ|monster
+スライムエンペラー|すらいむえんぺらー|monster
+ドラゴスライム|どらごすらいむ|monster
+さまようよろい|さまようよろい|monster
+しりょうのきし|しりょうのきし|monster
+がいこつ|がいこつ|monster
+マドハンド|まどはんど|monster
+ひとくいばこ|ひとくいばこ|monster
+ミミック|みみっく|monster
+キラーパンサー|きらーぱんさー|monster
+アローインプ|あろーいんぷ|monster
+リリパット|りりぱっと|monster
+トンブレロ|とんぶれろ|monster
+じんめんじゅ|じんめんじゅ|monster
+どくろあらい|どくろあらい|monster
+オーク|おーく|monster
+オークキング|おーくきんぐ|monster
+ゴールドマン|ごーるどまん|monster
+メタッピー|めたっぴー|monster
+ホークマン|ほーくまん|monster
+ばくだんいわ|ばくだんいわ|monster
+おばけキャンドル|おばけきゃんどる|monster
+デビルアーマー|でびるあーまー|monster
+ギガンテス|ぎがんてす|monster
+シルバーデビル|しるばーでびる|monster
+ランプのまじん|らんぷのまじん|monster
+アンクルホーン|あんくるほーん|monster
+ドラゴンゾンビ|どらごんぞんび|monster
+ドラゴンキッズ|どらごんきっず|monster
+バラモス|ばらもす|monster
+グラコス|ぐらこす|monster
+キングヒドラ|きんぐひどら|monster
+ドン・モグーラ|どんもぐーら|monster
+ムドー|むどー|monster
+魔犬レオパルド|まけんれおぱるど|monster
+ギュメイ将軍|ぎゅめいしょうぐん|monster
+ゴレオン将軍|ごれおんしょうぐん|monster
+ゲルニック将軍|げるにっくしょうぐん|monster
+死神スライダーク|しにがみすらいだーく|monster
+スライムジェネラル|すらいむじぇねらる|monster
+キラーマジンガ|きらーまじんが|monster
+常闇の竜レグナード|とこやみのりゅうれぐなーど|monster
+海冥主メイヴ|かいめいしゅめいヴ|monster
+冥骸魔レギルラッゾ|めいがいまれぎるらっぞ|monster
+獣魔ローガスト|じゅうまろーがすと|monster
+紅殻魔スコルパイド|こうかくますこるぱいど|monster
+翠将鬼ジェルザーク|すいしょうきじぇるざーく|monster
+剛獣鬼ガルドドン|ごうじゅうきがるどどん|monster
+邪蒼鎧デルメゼ|じゃそうがいでるめぜ|monster
+羅刹王バラシュナ|らせつおうばらしゅな|monster
+絶念のアウルモッド|ぜつねんのあうるもっど|monster
+厭悪のルベランギス|えんおのるべらんぎす|monster
+凶禍のフラウソン|きょうかのふらうそん|monster
+悲愴のウィリーデ|ひそうのうぃりーで|monster
+まほうのカギ|まほうのかぎ|item
+カジノプレイチケット|かじのぷれいちけっと|item
+ビンゴ券|びんごけん|item
+スペシャルふくびき券|すぺしゃるふくびきけん|item
+タロットメダル|たろっとめだる|item
+タロットパック|たろっとぱっく|item
+ふしぎな小箱|ふしぎなこばこ|item
+しあわせの玉手箱|しあわせのたまてばこ|item
+虹色のオーブ|にじいろのおーぶ|item
+レッドオーブ|れっどおーぶ|item
+ブルーオーブ|ぶるーおーぶ|item
+イエローオーブ|いえろーおーぶ|item
+グリーンオーブ|ぐりーんおーぶ|item
+パープルオーブ|ぱーぷるおーぶ|item
+アステライト鉱石|あすてらいとこうせき|item
+汗と涙の結晶|あせとなみだのけっしょう|item
+ようせいの粉|ようせいのこな|item
+きようさのたね|きようさのたね|item
+すばやさのたね|すばやさのたね|item
+ちからのたね|ちからのたね|item
+いのちのきのみ|いのちのきのみ|item
+まもりのたね|まもりのたね|item
+ふしぎなきのみ|ふしぎなきのみ|item
+やりなおしの宝珠|やりなおしのほうじゅ|item
+スキルブック|すきるぶっく|item
+きんのロザリオ|きんのろざりお|item
+大地の大竜玉|だいちのだいりゅうぎょく|item
+ハイドラベルト|はいどらべると|item
+魔王のネックレス|まおうのねっくれす|item
+ギガスラッシュ|ぎがすらっしゅ|skill
+ギガブレイク|ぎがぶれいく|skill
+はやぶさ斬り|はやぶさぎり|skill
+超はやぶさ斬り|ちょうはやぶさぎり|skill
+ドラゴン斬り|どらごんぎり|skill
+かえん斬り|かえんぎり|skill
+ぶんまわし|ぶんまわし|skill
+渾身斬り|こんしんぎり|skill
+全身全霊斬り|ぜんしんぜんれいぎり|skill
+天下無双|てんかむそう|skill
+もろば斬り|もろばぎり|skill
+すてみ|すてみ|skill
+ミラクルブースト|みらくるぶーすと|skill
+タイガークロー|たいがーくろー|skill
+ライガークラッシュ|らいがーくらっしゅ|skill
+ゴールドフィンガー|ごーるどふぃんがー|skill
+しんくうは|しんくうは|skill
+棍閃殺|こんせんさつ|skill
+氷結らんげき|ひょうけつらんげき|skill
+なぎはらい|なぎはらい|skill
+狼牙突き|ろうがづき|skill
+さみだれ突き|さみだれづき|skill
+ジゴスパーク|じごすぱーく|skill
+双竜打ち|そうりゅううち|skill
+極竜打ち|ごくりゅううち|skill
+疾風迅雷|しっぷうじんらい|skill
+スパークショット|すぱーくしょっと|skill
+しばり打ち|しばりうち|skill
+花ふぶき|はなふぶき|skill
+扇の舞|おうぎのまい|skill
+アゲハ乱舞|あげはらんぶ|skill
+ピンクタイフーン|ぴんくたいふーん|skill
+百花繚乱|ひゃっかりょうらん|skill
+マジステッキ|まじすてっき|skill
+キラキラポーン|きらきらぽーん|skill
+ティンクルバトン|てぃんくるばとん|skill
+ツッコミ|つっこみ|skill
+おたけび|おたけび|skill
+ボケ|ぼけ|skill
+ためる|ためる|skill
+しんだふり|しんだふり|skill
+みやぶる|みやぶる|skill
+ぬすむ|ぬすむ|skill
+ばくれつけん|ばくれつけん|skill
+せいけん突き|せいけんづき|skill
+ムーンサルト|むーんさると|skill
+ばくれつきゃく|ばくれつきゃく|skill
+磁界シールド|じかいしーるど|skill
+メディカルデバイス|めでぃかるでばいす|skill
+プラズマリムーバー|ぷらずまりむーばー|skill
+やいばくだき|やいばくだき|skill
+真・やいばくだき|しんやいばくだき|skill
+ロストアタック|ろすとあたっく|skill
+魔力かくせい|まりょくかくせい|skill
+早詠みの杖|はやよみのつえ|skill
+超暴走魔法陣|ちょうぼうそうまほうじん|skill
+ぶきみなひかり|ぶきみなひかり|skill
+聖なる祈り|せいなるいのり|skill
+天使の守り|てんしのまもり|skill
+聖女の守り|せいじょのまもり|skill
+きせきの雨|きせきのあめ|skill
+零の洗礼|れいのせんれい|skill
+一閃突き|いっせんづき|skill
+レボルスライサー|れぼるすらいさー|skill
+フォースブレイク|ふぉーすぶれいく|skill
+一喝|いっかつ|skill
+ふくびき|ふくびき|adventure
+カジノ|かじの|adventure
+すごろく|すごろく|adventure
+ハウジング|はうじんぐ|adventure
+ドレスアップ|どれすあっぷ|adventure
+カラーリング|からーりんぐ|adventure
+職人ギルド|しょくにんぎるど|adventure
+さいほう|さいほう|adventure
+ツボ錬金|つぼれんきん|adventure
+ランプ錬金|らんぷれんきん|adventure
+木工|もっこう|adventure
+調理|ちょうり|adventure
+道具鍛冶|どうぐかじ|adventure
+防具鍛冶|ぼうぐかじ|adventure
+武器鍛冶|ぶきかじ|adventure
+旅人バザー|たびびとばざー|adventure
+チーム|ちーむ|adventure
+フレンド|ふれんど|adventure
+ルーラストーン|るーらすとーん|adventure
+ドルボード|どるぼーど|adventure
+釣り|つり|adventure
+転生モンスター|てんせいもんすたー|adventure
+元気チャージ|げんきちゃーじ|adventure
+仲間モンスター|なかまもんすたー|adventure
+深淵の咎人たち|しんえんのとがびとたち|adventure
+常闇の聖戦|とこやみのせいせん|adventure
+聖守護者の闘戦記|せいしゅごしゃのとうせんき|adventure
+コロシアム|ころしあむ|adventure
+バトエン|ばとえん|adventure
+モンスターバトルロード|もんすたーばとるろーど|adventure
+冒険者の広場|ぼうけんしゃのひろば|adventure
+日替わり討伐|ひがわりとうばつ|adventure
+週替わり討伐|しゅうがわりとうばつ|adventure
+達人クエスト|たつじんくえすと|adventure
+試練の門|しれんのもん|adventure
+黄昏の奏戦記|たそがれのそうせんき|adventure
+大富豪|だいふごう|adventure
+マイタウン|まいたうん|adventure
+`;
+const categoryNames={all:'すべて',spell:'呪文',monster:'モンスター',item:'道具',job:'職業',skill:'特技',adventure:'冒険'};
+const kanaMap={
+'あ':['a'],'い':['i'],'う':['u'],'え':['e'],'お':['o'],
+'か':['ka'],'き':['ki'],'く':['ku'],'け':['ke'],'こ':['ko'],
+'さ':['sa'],'し':['shi','si'],'す':['su'],'せ':['se'],'そ':['so'],
+'た':['ta'],'ち':['chi','ti'],'つ':['tsu','tu'],'て':['te'],'と':['to'],
+'な':['na'],'に':['ni'],'ぬ':['nu'],'ね':['ne'],'の':['no'],
+'は':['ha'],'ひ':['hi'],'ふ':['fu','hu'],'へ':['he'],'ほ':['ho'],
+'ま':['ma'],'み':['mi'],'む':['mu'],'め':['me'],'も':['mo'],
+'や':['ya'],'ゆ':['yu'],'よ':['yo'],
+'ら':['ra'],'り':['ri'],'る':['ru'],'れ':['re'],'ろ':['ro'],
+'わ':['wa'],'を':['wo'],'ん':['n','nn'],
+'が':['ga'],'ぎ':['gi'],'ぐ':['gu'],'げ':['ge'],'ご':['go'],
+'ざ':['za'],'じ':['ji','zi'],'ず':['zu'],'ぜ':['ze'],'ぞ':['zo'],
+'だ':['da'],'ぢ':['di'],'づ':['du'],'で':['de'],'ど':['do'],
+'ば':['ba'],'び':['bi'],'ぶ':['bu'],'べ':['be'],'ぼ':['bo'],
+'ぱ':['pa'],'ぴ':['pi'],'ぷ':['pu'],'ぺ':['pe'],'ぽ':['po'],
+'ぁ':['xa','la'],'ぃ':['xi','li'],'ぅ':['xu','lu'],'ぇ':['xe','le'],'ぉ':['xo','lo'],
+'ゃ':['xya','lya'],'ゅ':['xyu','lyu'],'ょ':['xyo','lyo'],
+'ー':['-'],'ゔ':['vu'],
+'きゃ':['kya'],'きゅ':['kyu'],'きょ':['kyo'],
+'しゃ':['sha','sya'],'しゅ':['shu','syu'],'しょ':['sho','syo'],
+'ちゃ':['cha','tya'],'ちゅ':['chu','tyu'],'ちょ':['cho','tyo'],
+'にゃ':['nya'],'にゅ':['nyu'],'にょ':['nyo'],
+'ひゃ':['hya'],'ひゅ':['hyu'],'ひょ':['hyo'],
+'みゃ':['mya'],'みゅ':['myu'],'みょ':['myo'],
+'りゃ':['rya'],'りゅ':['ryu'],'りょ':['ryo'],
+'ぎゃ':['gya'],'ぎゅ':['gyu'],'ぎょ':['gyo'],
+'じゃ':['ja','jya','zya'],'じゅ':['ju','jyu','zyu'],'じょ':['jo','jyo','zyo'],
+'びゃ':['bya'],'びゅ':['byu'],'びょ':['byo'],
+'ぴゃ':['pya'],'ぴゅ':['pyu'],'ぴょ':['pyo'],
+'ふぁ':['fa','fwa'],'ふぃ':['fi'],'ふぇ':['fe'],'ふぉ':['fo'],
+'てぃ':['thi','texi'],'でぃ':['dhi'],'うぃ':['wi','uxi'],'うぇ':['we','uxe'],'うぉ':['who'],
+'ゔぁ':['va'],'ゔぃ':['vi'],'ゔぇ':['ve'],'ゔぉ':['vo'],
+'ちぇ':['che','tye'],'しぇ':['she','sye'],'じぇ':['je','jye'],'つぁ':['tsa'],
+'とぅ':['twu'],'どぅ':['dwu'],'くぁ':['kwa']
+};
+function normalizeKana(s){return s.replace(/[ァ-ヶ]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-96)).replace(/ヴ/g,'ゔ').toLowerCase()}
+function kanaTokens(reading){const s=normalizeKana(reading);const out=[];for(let i=0;i<s.length;i++){
+let c=s[i]; if(c==='っ'){let next=s[i+1]||'';let dig=s.slice(i+1,i+3);let opts=kanaMap[dig]||kanaMap[next]||['']; const consonants=[...new Set(opts.map(o=>o[0]).filter(x=>x&&/[^aeiou]/.test(x)))];out.push(consonants.length?consonants:['xtu','ltu']);continue}
+const pair=s.slice(i,i+2);if(kanaMap[pair]){out.push(kanaMap[pair]);i++;continue}if(kanaMap[c])out.push(kanaMap[c]);else if(/\s/.test(c))continue;else throw new Error('未知の読み文字: '+c+' / '+reading)}return out}
+function variants(reading){let acc=[''];for(const options of kanaTokens(reading)){
+const next=[];for(const pre of acc){for(const suff of options){next.push(pre+suff);if(next.length>9000)break}if(next.length>9000)break}acc=next}return [...new Set(acc)]}
+const questions=RAW.trim().split('\n').map(line=>{const [word,reading,category]=line.trim().split('|');return {word,reading,category,choices:null}});
+
+// 冒険モード用のオリジナル文章問題（ゲーム内の公式台詞ではありません）
+const adventureSentences=[
+["メラをとなえてスライムをたおす","めらをとなえてすらいむをたおす"],
+["ホイミでなかまのきずをいやす","ほいみでなかまのきずをいやす"],
+["ふくびきでおたからをねらう","ふくびきでおたからをねらう"],
+["まほうのせいすいでMPをかいふく","まほうのせいすいでえむぴーをかいふく"],
+["スライムのむれがあらわれた","すらいむのむれがあらわれた"],
+["ルーラストーンでまちにもどる","るーらすとーんでまちにもどる"],
+["せかいじゅのはでなかまをたすける","せかいじゅのはでなかまをたすける"],
+["たからばこからどうぐをみつけた","たからばこからどうぐをみつけた"],
+["モンスターをたおしてけいけんちをえる","もんすたーをたおしてけいけんちをえる"],
+["ぼうけんしゃたちはしろにむかった","ぼうけんしゃたちはしろにむかった"],
+["スライムナイトがみちをふさいだ","すらいむないとがみちをふさいだ"],
+["きょうはなかまとめいきゅうへいく","きょうはなかまとめいきゅうへいく"],
+["メラゾーマでつよいてきをねらう","めらぞーまでつよいてきをねらう"],
+["ベホマラーでみんなをかいふくする","べほまらーでみんなをかいふくする"],
+["ザオリクでなかまをよみがえらせる","ざおりくでなかまをよみがえらせる"],
+["キラキラをひろってそざいをあつめる","きらきらをひろってそざいをあつめる"],
+["まものつかいはなかまをたすけた","まものつかいはなかまをたすけた"],
+["そうりょはなかまにホイミをかける","そうりょはなかまにほいみをかける"],
+["まほうつかいはメラミをとなえる","まほうつかいはめらみをとなえる"],
+["パラディンがてきのこうげきをふせぐ","ぱらでぃんがてきのこうげきをふせぐ"],
+["なかまとちからをあわせてたたかう","なかまとちからをあわせてたたかう"],
+["ふしぎなとびらのおくにすすむ","ふしぎなとびらのおくにすすむ"],
+["ぼうけんのしょにきろくをのこす","ぼうけんのしょにきろくをのこす"],
+["レグナードとのたたかいがはじまる","れぐなーどとのたたかいがはじまる"],
+["めいきゅうのさいおうぶにたどりつく","めいきゅうのさいおうぶにたどりつく"],
+["せかいじゅのしずくでみんなをいやす","せかいじゅのしずくでみんなをいやす"],
+["とおいだいちにあたらしいまちがみえる","とおいだいちにあたらしいまちがみえる"],
+["ドラキーがよるのそらをとびまわる","どらきーがよるのそらをとびまわる"],
+["ゴーレムがちからづよくあるきだした","ごーれむがちからづよくあるきだした"],
+["まほうせんしはなかまをささえる","まほうせんしはなかまをささえる"],
+["てきのこうげきをかわしてはんげきする","てきのこうげきをかわしてはんげきする"],
+["おおきなとりでをめざしてすすもう","おおきなとりでをめざしてすすもう"],
+["いにしえのいせきでひみつをさがす","いにしえのいせきでひみつをさがす"],
+["あたらしいそうびをととのえてしゅっぱつ","あたらしいそうびをととのえてしゅっぱつ"],
+["ひかりのさすほうへみちをすすむ","ひかりのさすほうへみちをすすむ"],
+["まよいのもりでなかまとはぐれた","まよいのもりでなかまとはぐれた"],
+["みんなでまもののたいぐんにいどむ","みんなでまもののたいぐんにいどむ"],
+["てんくうからあたらしいぼうけんがはじまる","てんくうからあたらしいぼうけんがはじまる"],
+["きけんなダンジョンをこえてなかまとしろへむかう","きけんなだんじょんをこえてなかまとしろへむかう"],
+["まほうのちからをあわせてきょうだいなてきにたちむかう","まほうのちからをあわせてきょうだいなてきにたちむかう"],
+["たびびとはほしぞらのしたであしたのぼうけんをゆめみる","たびびとはほしぞらのしたであしたのぼうけんをゆめみる"],
+["なかまのこえをしんじてさいごのしれんをのりこえる","なかまのこえをしんじてさいごのしれんをのりこえる"],
+["ひとりではむずかしいたたかいもなかまとならのりこえられる","ひとりではむずかしいたたかいもなかまとならのりこえられる"],
+].map(([word,reading])=>({word,reading,category:'sentence',choices:null}));
+
+const $=id=>document.getElementById(id);
+const selection={playstyle:'free',category:'all',difficulty:'normal',duration:60,mode:'roman'};
+function makeChoices(id,options,key){const root=$(id);root.replaceChildren();for(const opt of options){const b=document.createElement('button');b.className='choice'+(selection[key]===opt.value?' active':'');b.type='button';b.textContent=opt.label;b.dataset.value=opt.value;b.setAttribute('aria-pressed',selection[key]===opt.value?'true':'false');b.addEventListener('click',()=>{selection[key]=opt.value;makeChoices(id,options,key);if(key==='mode')updateModeSetup();else updateHomeRecord()});root.append(b)}}
+const modeOptions=[{value:'roman',label:'⌨️ ローマ字入力（PC・iPad）'},{value:'flick',label:'📱 かなフリック入力（スマホ）'}];
+const catOptions=Object.entries(categoryNames).map(([value,label])=>({value,label}));const difficultyOptions=[{value:'easy',label:'初級'},{value:'normal',label:'中級'},{value:'hard',label:'上級'}];const timeOptions=[{value:60,label:'60秒'},{value:120,label:'120秒'},{value:0,label:'時間無制限（30問）'}];
+$('word-total').textContent=questions.length+'単語 ／ '+adventureSentences.length+'文章 ／ '+(Object.keys(categoryNames).length-1)+'ジャンル';makeChoices('category-options',catOptions,'category');makeChoices('mode-options',modeOptions,'mode');makeChoices('difficulty-options',difficultyOptions,'difficulty');makeChoices('time-options',timeOptions,'duration');updateModeSetup();
+let game=null, timer=null, flash=null;
+function choosePlaystyle(style){
+ selection.playstyle=style;
+ for(const name of ['free','adventure','timeattack']){
+   $('choose-'+name).setAttribute('aria-pressed',String(style===name));
+ }
+ $('free-settings').classList.toggle('hide',style!=='free');
+ $('adventure-settings').classList.toggle('hide',style!=='adventure');
+ $('timeattack-settings').classList.toggle('hide',style!=='timeattack');
+ $('start-btn').textContent=style==='adventure'?'▶　冒険モードへ しゅっぱつ':style==='timeattack'?'⏱　60秒チャレンジ！':'▶　フリーで はじめる';
+ $('ranking-open').textContent=style==='adventure'?'🏆 冒険のベスト10':style==='timeattack'?'🏆 タイムアタック BEST 10':'🏆 ベスト10を みる';
+ $('ranking-open').nextElementSibling.textContent=style==='adventure'?'入力方式ごとに到達レベル優先のベスト10を保存します。':style==='timeattack'?'入力方式ごとに、クリア問題数の多い順でベスト10を保存します。':'入力方式・ジャンル・難易度・時間ごとにランキングを保存します。';
+ updateModeSetup();updateHomeRecord();
+}
+$('choose-free').addEventListener('click',()=>choosePlaystyle('free'));
+$('choose-adventure').addEventListener('click',()=>choosePlaystyle('adventure'));
+$('choose-timeattack').addEventListener('click',()=>choosePlaystyle('timeattack'));
+/* 初期モードはランキング用の保存定数の初期化後に設定 */
+function show(screen){
+  ['setup','game','result'].forEach(s=>$(s+'-screen').classList.toggle('hide',s!==screen));
+  document.body.classList.toggle('playing',screen==='game');
+  document.body.classList.toggle('flick-mode',screen==='game'&&selection.mode==='flick');
+  document.body.classList.toggle('adventure-mode',screen==='game'&&!!game&&game.playstyle==='adventure');
+  document.body.classList.toggle('timeattack-mode',screen==='game'&&!!game&&game.playstyle==='timeattack');
+  syncVisibleViewport();
+}
+/* iOSのキーボード表示時、layout viewportでなくvisualViewportの高さ・位置を基準に固定 */
+function syncVisibleViewport(){
+  const vv=window.visualViewport;
+  const h=vv?vv.height:window.innerHeight;
+  const top=vv?vv.offsetTop:0;
+  document.documentElement.style.setProperty('--vv-height',Math.max(100,h)+'px');
+  document.documentElement.style.setProperty('--vv-top',Math.max(0,top)+'px');
+  document.body.classList.toggle('short-viewport',h<355);
+  document.body.classList.toggle('tiny-viewport',h<235);
+}
+if(window.visualViewport){
+  window.visualViewport.addEventListener('resize',syncVisibleViewport);
+  window.visualViewport.addEventListener('scroll',syncVisibleViewport);
+}
+window.addEventListener('resize',syncVisibleViewport);
+window.addEventListener('orientationchange',syncVisibleViewport);
+$('type-input').addEventListener('focus',()=>{
+  document.body.classList.add('keyboard-open');
+  syncVisibleViewport();
+  requestAnimationFrame(syncVisibleViewport);
+});
+$('type-input').addEventListener('blur',()=>document.body.classList.remove('keyboard-open'));
+syncVisibleViewport();
+function pool(){const filtered=questions.filter(q=>selection.category==='all'||q.category===selection.category);const easiest=filtered.filter(q=>normalizeKana(q.reading).length<=5);const hardest=filtered.filter(q=>normalizeKana(q.reading).length>=7);if(selection.difficulty==='easy')return easiest.length>=5?easiest:filtered;if(selection.difficulty==='hard')return hardest.length>=5?hardest:filtered;return filtered}
+function adventureTargetLength(level){
+ // 毎レベル、目標文字数を段階的に増やす。
+ if(level<=3)return level+2;
+ if(level<=6)return level+2;
+ if(level<=10)return level+3;
+ if(level<=14)return level+2;
+ return 17+Math.min(23,(level-15)*2);
+}
+function poolForAdventure(level){
+ const target=adventureTargetLength(level);
+ if(level>=15){
+   return adventureSentences.map(q=>({q,d:Math.abs(normalizeKana(q.reading).length-target)}))
+    .sort((a,b)=>a.d-b.d).slice(0,Math.min(24,adventureSentences.length)).map(x=>x.q);
+ }
+ let list=questions;
+ if(level>=12){list=questions.filter(q=>normalizeKana(q.reading).length>=8)}
+ const scored=list.map(q=>({q,d:Math.abs(normalizeKana(q.reading).length-target)})).sort((a,b)=>a.d-b.d);
+ const close=scored.filter(x=>x.d<=1);
+ return (close.length>=12?close:scored.slice(0,Math.min(scored.length,45))).slice(0,60).map(x=>x.q);
+}
+const TIMEATTACK_STAGES=[
+ {min:2,max:4,name:'第1段階・短い単語'},
+ {min:5,max:6,name:'第2段階・ふつうの単語'},
+ {min:7,max:8,name:'第3段階・少し長い単語'},
+ {min:9,max:10,name:'第4段階・長い単語'},
+ {min:11,max:Infinity,name:'第5段階・最難関の単語'}
+];
+function timeattackStage(clears){return Math.min(4,Math.floor(clears/5))}
+function poolForTimeattack(stage){
+ const {min,max}=TIMEATTACK_STAGES[stage];
+ const result=questions.filter(q=>{const size=normalizeKana(q.reading).length;return size>=min&&size<=max});
+ return result.length?result:questions;
+}
+function pick(){
+ if(game.playstyle==='timeattack'){
+   const stage=timeattackStage(game.clears);
+   if(game.poolLevel!==stage){game.pool=poolForTimeattack(stage);game.deck=[];game.poolLevel=stage;game.stage=stage}
+ }
+ if(game.playstyle==='adventure'){
+   if(game.poolLevel!==game.level){game.pool=poolForAdventure(game.level);game.deck=[];game.poolLevel=game.level}
+ }
+ if(!game.pool.length)return null;
+ if(!game.deck.length)game.deck=shuffle([...game.pool]);
+ const next=game.deck.pop();if(game.question&&next===game.question&&game.deck.length)return game.deck.pop();return next
+}
+function shuffle(items){for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}return items}
+function drawQuestion(msg=''){if(game.question)game.question.choices=null;game.question=pick();if(game.question&&selection.mode==='roman')game.question.choices=variants(game.question.reading);game.typed='';game.pending='';game.questionMistake=false;const q=game.question;if(!q){finish();return} $('question-word').textContent=q.word;$('question-reading').textContent=q.reading;$('question-cat').textContent=game.playstyle==='timeattack'?'⏱ '+TIMEATTACK_STAGES[game.stage].name+' ／ '+categoryNames[q.category]:q.category==='sentence'?'文章問題':categoryNames[q.category];$('type-input').value='';$('type-input').classList.remove('bad');$('flick-display').classList.toggle('hide',selection.mode!=='flick');$('flick-board').classList.toggle('hide',selection.mode!=='flick');$('flick-guide').classList.toggle('hide',selection.mode!=='flick');renderRoman();if(selection.mode==='flick')renderFlick();$('game-message').textContent=msg||(game.playstyle==='adventure'?'1問ずつ経験値をためて、次のレベルへ！':game.playstyle==='timeattack'?'60秒でできるだけ多くの単語をクリアしよう！':'お題を打って けいけんちを ためよう！');$('game-message').className=msg?'message feedback':'message';if(selection.mode==='roman')focusInput()}
+function chooseTarget(){const q=game.question;if(!q)return '';const candidates=q.choices.filter(x=>x.startsWith(game.typed));return candidates.reduce((best,v)=>!best||v.length<best.length?v:best,'')||q.choices[0]}
+function renderRoman(){if(selection.mode==='flick'){renderKanaTarget();return}const text=chooseTarget(),n=game.typed.length;const rom=$('roman-target');rom.replaceChildren();let a=document.createElement('span');a.className='done';a.textContent=text.slice(0,n);rom.appendChild(a);let b=document.createElement('span');b.className='remain';b.textContent=text.slice(n);rom.appendChild(b)}
+function focusInput(){if(selection.mode==='flick'||!game||!game.active)return;try{$('type-input').focus({preventScroll:true})}catch(e){$('type-input').focus()}}
+function askKeyboardConfirmation(){
+  $('keyboard-help').classList.add('hide');
+  $('keyboard-confirm-choices').classList.remove('hide');
+  $('keyboard-test').value='';
+  $('keyboard-overlay').classList.remove('hide');
+  document.body.classList.add('keyboard-check-open');
+  syncVisibleViewport();
+}
+function showKeyboardHelp(){
+  $('keyboard-confirm-choices').classList.add('hide');
+  $('keyboard-help').classList.remove('hide');
+  // iPadでは直接のタップ操作からフォーカスさせるとキーボードが表示されやすい。
+  try{$('keyboard-test').focus({preventScroll:true})}catch(e){$('keyboard-test').focus()}
+  syncVisibleViewport();
+}
+function closeKeyboardConfirmation(){
+  $('keyboard-test').blur();
+  $('keyboard-overlay').classList.add('hide');
+  document.body.classList.remove('keyboard-check-open');
+}
+function startAfterKeyboardConfirmation(){closeKeyboardConfirmation();start()}
+function start(){
+ clearInterval(timer);clearTimeout(flash);
+ const adv=selection.playstyle==='adventure',ta=selection.playstyle==='timeattack';
+ game={active:true,playstyle:selection.playstyle,level:1,xp:0,totalXp:0,hp:100,maxHp:100,stage:0,
+    poolLevel:null,start:performance.now(),recordConfig:{...selection},duration:adv?0:ta?60:selection.duration,
+    pool:(adv||ta)?[]:pool(),deck:[],question:null,typed:'',pending:'',correct:0,mistakes:0,clears:0,sentenceClears:0,newTitles:[],combo:0,maxCombo:0,questionMistake:false,score:0,endedAt:null};
+ $('resource-label').textContent=adv?'HP のこり':'のこり時間';
+ $('adventure-hud').classList.toggle('hide',!adv);
+ $('adv-mini-hp').classList.toggle('hide',!adv);
+ $('adventure-level-announcement').classList.add('hide');
+ $('result-adventure-details').classList.toggle('hide',!(adv||ta));
+ $('result-screen').classList.remove('game-over');
+ $('quit-btn').textContent=ta?'▶ 挑戦を 中断する':'▶ ぼうけんを おえる';
+ show('game');drawQuestion();updateStats();timer=setInterval(tick,120);
+}
+function remaining(){if(!game||!game.duration)return 0;return Math.max(0,game.duration-(performance.now()-game.start)/1000)}
+function tick(){if(!game?.active)return;updateStats();if(game.duration&&remaining()<=0)finish()}
+function xpNeed(level){return 24+level*6}
+function updateStats(){
+ if(!game)return;
+ const adv=game.playstyle==='adventure';
+ $('time-remaining').innerHTML=adv?game.hp+'<span class="s"> / 100</span>':game.duration?Math.ceil(remaining())+'<span class="s"> 秒</span>':'∞';
+ $('questions-done').textContent=game.clears;$('mistakes').textContent=game.mistakes;$('combo').textContent=game.combo;
+ $('quest-level').textContent=adv?'冒険者 Lv.'+game.level:game.playstyle==='timeattack'?'⏱ タイムアタック '+(game.stage+1)+'/5':'フリーモード';
+ if(adv){
+   $('adv-mini-hp').textContent='❤ '+game.hp;
+   $('adventure-hp-text').textContent=game.hp+' / '+game.maxHp;
+   $('adventure-hp-bar').style.width=(100*game.hp/game.maxHp)+'%';
+   $('adventure-xp-text').textContent=game.xp+' / '+xpNeed(game.level);
+   $('adventure-xp-bar').style.width=(100*game.xp/xpNeed(game.level))+'%';
+ }
+ const fraction=game.duration?Math.max(0,remaining()/game.duration):1;$('timer-bar').style.width=(fraction*100)+'%';$('timer-bar').classList.toggle('urgent',!!game.duration&&fraction<=.2)
+}
+function loseHp(){
+ if(game?.playstyle!=='adventure')return false;
+ game.hp=Math.max(0,game.hp-10);
+ if(game.hp===0){finish('gameover');return true}
+ $('game-message').textContent='⚡ ミス！ HP−10　（のこり '+game.hp+'）';
+ $('game-message').className='message';updateStats();return false;
+}
+function gainAdventureXp(q){
+ const earned=10+normalizeKana(q.reading).length*2;
+ game.xp+=earned;game.totalXp+=earned;
+ let ups=0;while(game.xp>=xpNeed(game.level)){
+   game.xp-=xpNeed(game.level);game.level++;game.hp=Math.min(game.maxHp,game.hp+15);ups++;
+ }
+ if(ups){
+   $('adventure-level-announcement').textContent='✦ レベルアップ！ Lv.'+game.level+' ／ HPが回復！ ✦';
+   $('adventure-level-announcement').classList.remove('hide');
+   $('adventure-level-announcement').classList.remove('active');void $('adventure-level-announcement').offsetWidth;
+   $('adventure-level-announcement').classList.add('active');
+ }else $('adventure-level-announcement').classList.add('hide');
+ return (ups?'🌟 レベルアップ！ Lv.'+game.level+' HP＋15':'✦ '+earned+' EXP 獲得！');
+}
+function handleInput(){if(!game?.active||!game.question)return;if(game.duration&&remaining()<=0){finish();return}const input=$('type-input');let val=input.value.toLowerCase().replace(/[^a-z-]/g,'');
+// 文字の置換・削除にも対応。誤りは1打鍵につき数える。
+if(val.length<game.typed.length){game.typed=val;input.value=val;renderRoman();return}
+const q=game.question;let prefix=game.typed;
+if(!val.startsWith(prefix)){prefix='';game.typed=''}
+for(let idx=prefix.length;idx<val.length;idx++){
+const candidate=prefix+val[idx];if(q.choices.some(v=>v.startsWith(candidate))){prefix=candidate;game.correct++}else{game.mistakes++;game.combo=0;game.questionMistake=true;input.classList.add('bad');clearTimeout(flash);flash=setTimeout(()=>input.classList.remove('bad'),210);$('game-message').textContent='ミス！ 正しい文字を入力しよう';$('game-message').className='message';if(loseHp())return;break}
+if(q.choices.includes(prefix)){game.typed=prefix;input.value=prefix;complete();return}
+}
+game.typed=prefix;input.value=prefix;renderRoman();updateStats()}
+function complete(){
+ if(!game?.active)return;
+ const q=game.question;
+ game.clears++;game.combo++;game.maxCombo=Math.max(game.maxCombo,game.combo);
+ game.score+=Math.max(10,Math.round(game.typed.length*(selection.mode==='flick'?18:10)*(1+Math.min(game.combo,20)*.05)));
+ const beforeStage=game.playstyle==='timeattack'?timeattackStage(game.clears-1):-1;
+ const afterStage=game.playstyle==='timeattack'?timeattackStage(game.clears):-1;
+ const msg=game.playstyle==='adventure'?gainAdventureXp(q):game.playstyle==='timeattack'?(afterStage>beforeStage?'⚡ 難易度アップ！ '+TIMEATTACK_STAGES[afterStage].name:'✦ '+game.clears+'問クリア！ 次の単語へ！'):q.word+' を となえた！';
+ if(q.category==='sentence')game.sentenceClears++;
+ const earnedTitles=recordTitleProgress();
+ if(game.playstyle==='free'&&game.duration===0&&game.clears>=30){finish();return}
+ drawQuestion(earnedTitles.length?'🏅 新しい称号「'+earnedTitles[0].name+'」を獲得！':msg);updateStats();
+}
+function finish(reason='complete'){
+ if(!game?.active)return;
+ game.active=false;game.endedAt=performance.now();clearInterval(timer);clearTimeout(flash);$('type-input').blur();
+ const adv=game.playstyle==='adventure',ta=game.playstyle==='timeattack';
+ const elapsed=Math.max(1,(game.endedAt-game.start)/1000);
+ const acc=game.correct+game.mistakes?Math.round(game.correct/(game.correct+game.mistakes)*100):100;
+ const cpm=Math.round(game.correct*60/elapsed);
+ let rank='D',comment='練習を重ねて、次の冒険に挑もう！';
+ if(adv){
+   rank=game.level>=20?'S':game.level>=15?'A':game.level>=10?'B':game.level>=5?'C':'D';
+   comment=reason==='gameover'?'HPが0になった！ 冒険はここまで。':reason==='quit'?'冒険を中断しました。':'冒険のきろくを保存しました。';
+   $('result-adventure-details').textContent='到達 Lv.'+game.level+' ／ 獲得経験値 '+game.totalXp+' EXP ／ 残りHP '+game.hp+' ／ '+(reason==='gameover'?'ゲームオーバー':'冒険終了');
+   $('result-rank-heading').textContent='🏆 冒険モード BEST 10（到達レベル順）';
+   $('result-screen').classList.toggle('game-over',reason==='gameover');
+ }else if(ta){
+   rank=game.clears>=30?'S':game.clears>=20?'A':game.clears>=12?'B':game.clears>=5?'C':'D';
+   comment=reason==='quit'?'挑戦を終了しました。':'60秒チャレンジ終了！ '+game.clears+'問クリア！';
+   $('result-adventure-details').textContent='⏱ 60秒タイムアタック ／ '+game.clears+'問クリア ／ 到達：'+TIMEATTACK_STAGES[timeattackStage(game.clears)].name;
+   $('result-rank-heading').textContent='🏆 タイムアタック BEST 10（クリア数順）';
+ }else{
+   if(selection.mode==='flick'?game.clears>=12&&acc>=98&&cpm>=85:game.clears>=20&&acc>=98&&cpm>=210){rank='S';comment='伝説のタイピング冒険者！'}
+   else if(selection.mode==='flick'?game.clears>=8&&acc>=95&&cpm>=65:game.clears>=12&&acc>=95&&cpm>=160){rank='A';comment='見事な腕前！ ことばの達人！'}
+   else if(selection.mode==='flick'?game.clears>=4&&acc>=90&&cpm>=40:game.clears>=7&&acc>=90&&cpm>=110){rank='B';comment='いい調子！ さらにスピードを磨こう！'}
+   else if(game.clears>=3){rank='C';comment='冒険は始まったばかり！'}
+   $('result-rank-heading').textContent='🏆 スコアランキング BEST 10';
+ }
+ $('result-speed-label').textContent=selection.mode==='flick'?'正入力かな / 分':'正打鍵 / 分';
+ $('result-rank').textContent=rank;$('result-comment').textContent=comment;
+ $('result-clears').textContent=game.clears;$('result-accuracy').textContent=acc+'%';$('result-cpm').textContent=cpm;
+ $('result-maxcombo').textContent=game.maxCombo;$('result-score').textContent=game.score.toLocaleString('ja-JP');$('result-mistakes').textContent=game.mistakes;
+ const titleResult=$('result-titles');titleResult.classList.toggle('hide',game.newTitles.length===0);titleResult.replaceChildren();
+ if(game.newTitles.length){const head=document.createElement('strong');head.textContent='🏅 今回獲得した称号 '+game.newTitles.length+'個';titleResult.append(head);const names=document.createElement('span');names.textContent=game.newTitles.map(t=>'「'+t.name+'」').join(' ・ ');titleResult.append(names)}
+ const ranked=ta&&reason==='quit'?{skipped:true,position:null,entryId:null,aborted:true}:saveScoreToRanking({playstyle:game.playstyle,level:game.level,xp:game.totalXp,score:game.score,clears:game.clears,accuracy:acc,rank,cpm,mistakes:game.mistakes,createdAt:new Date().toISOString()},game.recordConfig);
+ $('result-rank-status').textContent=ranked.aborted?'60秒経過前に中断したため、ランキングには保存されません。':ranked.error?'記録を保存できませんでした。ブラウザの保存設定をご確認ください。':ranked.position?'🏆 今回の順位：第'+ranked.position+'位！ ベスト10にランクイン！':ranked.skipped?'お題を1問クリアするとランキングに記録されます。':'今回はベスト10圏外。次の挑戦で上位を目指そう！';
+ renderRanking('result-rank-list','result-rank-condition',game.recordConfig,ranked.entryId);
+ updateHomeRecord();show('result');
+}
+
+/* v2.2 タッチで操作する内蔵ひらがな12キーフリック。
+   端末の日本語IMEは開かないため、iOSでもフリック操作が統一される。 */
+function updateModeSetup(){
+ $('mode-hint').innerHTML=(selection.playstyle==='adventure'?'冒険モード：Lv.1から開始。正解で経験値を獲得し、ミスでHPが減ります。<br>':selection.playstyle==='timeattack'?'タイムアタック：60秒で単語を何問クリアできるか挑戦！<br>5問クリアごとに単語が長くなります。<br>':'')+(selection.mode==='flick'
+   ?'スマホ向けのかなフリック盤で、ひらがなを入力します。<br>指を左右上下に滑らせて文字を選び、「゛゜小」で濁点・小文字を入力。<br>スマホ本体のキーボードは使わず、そのまま始まります。'
+   :'表示されたお題をローマ字で入力。<br>「shi / si」「chi / ti」などの別表記にも対応しています。<br>英字キーボードの確認後に始まります。');
+ updateHomeRecord();
+}
+const FLICK_LAYOUT=[
+ ['あ','い','う','え','お'],['か','き','く','け','こ'],['さ','し','す','せ','そ'],
+ ['た','ち','つ','て','と'],['な','に','ぬ','ね','の'],['は','ひ','ふ','へ','ほ'],
+ ['ま','み','む','め','も'],['や','','ゆ','','よ'],['ら','り','る','れ','ろ'],
+ {role:'mod',center:'゛゜小',left:'゛',up:'゜',right:'小'},
+ ['わ','を','ん','ー','ー'],
+ {role:'del',center:'⌫',up:'⌫'}
+];
+const MOD_GROUPS=[];
+for(const [plain,voiced,semi] of [
+ ['かきくけこ','がぎぐげご',''],['さしすせそ','ざじずぜぞ',''],
+ ['たちつてと','だぢづでど',''],['はひふへほ','ばびぶべぼ','ぱぴぷぺぽ'],
+ ['う','ゔ','']
+]) for(let i=0;i<plain.length;i++) MOD_GROUPS.push([plain[i],voiced[i],...(semi?[semi[i]]:[])]);
+for(const [large,small] of [['あ','ぁ'],['い','ぃ'],['う','ぅ'],['え','ぇ'],['お','ぉ'],['や','ゃ'],['ゆ','ゅ'],['よ','ょ'],['つ','っ'],['わ','ゎ']]){
+ const group=MOD_GROUPS.find(g=>g[0]===large);
+ if(group)group.push(small);else MOD_GROUPS.push([large,small]);
+}
+const MOD_BY_CHAR=new Map();for(const group of MOD_GROUPS)for(const c of group)MOD_BY_CHAR.set(c,group);
+const SMALL_KANA=new Set('ぁぃぅぇぉゃゅょっゎ');
+function getModifiedKana(ch,dir){
+ const group=MOD_BY_CHAR.get(ch);if(!group)return ch;
+ if(dir==='tap')return group[(group.indexOf(ch)+1)%group.length];
+ if(dir==='right')return group.find(v=>SMALL_KANA.has(v))||ch;
+ if(dir==='left')return group.find(v=>v!==group[0]&&!SMALL_KANA.has(v))||ch;
+ if(dir==='up')return group.length>=3&&!SMALL_KANA.has(group[2])?group[2]:ch;
+ return ch;
+}
+function canTurnInto(ch,expected){return ch===expected||(MOD_BY_CHAR.get(ch)||[ch]).includes(expected)}
+function renderKanaTarget(){
+ const q=game?.question;if(!q)return;
+ const target=normalizeKana(q.reading), typed=game.typed||'';
+ const rom=$('roman-target');rom.replaceChildren();
+ const done=document.createElement('span');done.className='done';done.textContent=typed;rom.append(done);
+ const left=document.createElement('span');left.className='remain';left.textContent=target.slice(typed.length);rom.append(left);
+}
+function renderFlick(){
+ if(!game?.question)return;
+ $('flick-typed').textContent=game.typed;
+ $('flick-pending').textContent=game.pending||'';
+ renderKanaTarget();
+}
+function flickError(){
+ game.mistakes++;game.combo=0;game.questionMistake=true;
+ $('game-message').textContent='ミス！ お題の文字をよく見よう';$('game-message').className='message';
+ const board=$('flick-board');board.classList.remove('flick-wrong');void board.offsetWidth;board.classList.add('flick-wrong');
+ if(loseHp())return;updateStats();
+}
+function commitFlickPending(){
+ if(!game.pending)return true;
+ const target=normalizeKana(game.question.reading);
+ const ch=game.pending;game.pending='';
+ if(ch===target[game.typed.length]){game.typed+=ch;game.correct++;return true}
+ flickError();return false;
+}
+function tryFlickComplete(){
+ if(!game?.active)return true;
+ const target=normalizeKana(game.question.reading);
+ if(game.pending&&game.typed+game.pending===target){if(commitFlickPending()&&game.active)complete();return true}
+ if(game.typed===target){complete();return true}
+ return false;
+}
+function flickAdd(ch){
+ if(!game?.active||selection.mode!=='flick'||!ch)return;
+ if(game.duration&&remaining()<=0){finish();return}
+ if(game.pending){if(!commitFlickPending()||!game.active){renderFlick();return;}}
+ const target=normalizeKana(game.question.reading),need=target[game.typed.length];
+ if(!need)return;
+ if(canTurnInto(ch,need)){
+   game.pending=ch;
+   if(tryFlickComplete())return;
+ }else{flickError()}
+ renderFlick();updateStats();
+}
+function flickModify(dir){
+ if(!game?.active||selection.mode!=='flick'||!game.pending)return;
+ game.pending=getModifiedKana(game.pending,dir);
+ if(tryFlickComplete())return;
+ renderFlick();
+}
+function flickDelete(){
+ if(!game?.active||selection.mode!=='flick')return;
+ if(game.pending)game.pending='';
+ else if(game.typed)game.typed=game.typed.slice(0,-1);
+ renderFlick();updateStats();
+}
+function activateFlick(entry,dir){
+ if(!game?.active||selection.mode!=='flick')return;
+ if(Array.isArray(entry)){
+    const ch=entry[{tap:0,left:1,up:2,right:3,down:4}[dir]]||entry[0];
+    flickAdd(ch);
+ } else if(entry.role==='mod'){flickModify(dir)}
+ else if(entry.role==='del')flickDelete();
+}
+function flickDirection(dx,dy){
+ if(Math.max(Math.abs(dx),Math.abs(dy))<18)return 'tap';
+ return Math.abs(dx)>Math.abs(dy)?(dx<0?'left':'right'):(dy<0?'up':'down');
+}
+function flickKeyLabel(entry,dir){
+ if(Array.isArray(entry))return entry[{tap:0,left:1,up:2,right:3,down:4}[dir]]||entry[0];
+ if(entry.role==='mod')return ({tap:'゛゜小',left:'゛',up:'゜',right:'小',down:'゛゜小'})[dir];
+ return '⌫';
+}
+function setupFlickBoard(){
+ const board=$('flick-board');board.replaceChildren();
+ FLICK_LAYOUT.forEach((entry,i)=>{
+   const key=document.createElement('button');key.type='button';key.className='flick-key';
+   const role=Array.isArray(entry)?'kana':entry.role;key.dataset.role=role;
+   key.setAttribute('aria-label',Array.isArray(entry)?entry[0]+'行：タップで'+entry[0]+'、上下左右のフリックで他のかな':role==='mod'?'濁点・半濁点・小文字へ変換':'1文字削除');
+   const center=document.createElement('span');center.className='flick-main';center.textContent=flickKeyLabel(entry,'tap');key.append(center);
+   for(const dir of ['left','up','right','down']){
+     let val=Array.isArray(entry)?entry[{left:1,up:2,right:3,down:4}[dir]]:(entry.role==='mod'?entry[dir]:'');
+     if(!val||val===center.textContent)continue;
+     const small=document.createElement('span');small.className='flick-near '+dir;small.textContent=val;key.append(small);
+   }
+   let gesture=null;
+   key.addEventListener('pointerdown',e=>{
+     if(!game?.active||selection.mode!=='flick')return;
+     e.preventDefault();gesture={pointerId:e.pointerId,x:e.clientX,y:e.clientY,dir:'tap'};
+     key.classList.add('pressed');center.textContent=flickKeyLabel(entry,'tap');
+     try{key.setPointerCapture(e.pointerId)}catch(_e){}
+   });
+   key.addEventListener('pointermove',e=>{
+     if(!gesture||gesture.pointerId!==e.pointerId)return;
+     e.preventDefault();gesture.dir=flickDirection(e.clientX-gesture.x,e.clientY-gesture.y);
+     center.textContent=flickKeyLabel(entry,gesture.dir);
+   });
+   key.addEventListener('pointerup',e=>{
+     if(!gesture||gesture.pointerId!==e.pointerId)return;
+     e.preventDefault();const dir=flickDirection(e.clientX-gesture.x,e.clientY-gesture.y);
+     gesture=null;key.classList.remove('pressed');center.textContent=flickKeyLabel(entry,'tap');activateFlick(entry,dir);
+   });
+   key.addEventListener('pointercancel',()=>{gesture=null;key.classList.remove('pressed');center.textContent=flickKeyLabel(entry,'tap')});
+   // VoiceOver / Bluetoothキーボードなど、pointer操作以外からのクリックにも対応
+   key.addEventListener('click',e=>{if(e.detail===0)activateFlick(entry,'tap')});
+   board.append(key);
+ });
+}
+setupFlickBoard();
+
+/* v2.3：同一条件のベスト10のみランキングに保存。
+   旧バージョンの最高得点データは消さない（条件情報が無いためランキングへは混ぜない）。 */
+/* v2.5 称号：累計の問題数、冒険到達、ミスなし、入力方式などを達成して解放 */
+const TITLE_KEY='dqx_typing_titles_v25';
+const TITLE_DEFS=[
+ {id:'first',name:'はじめの一文字',condition:'累計1問クリア',test:(s,g)=>s.totalClears>=1},
+ {id:'words25',name:'ことばの旅人',condition:'累計25問クリア',test:(s,g)=>s.totalClears>=25},
+ {id:'words100',name:'百語を知る者',condition:'累計100問クリア',test:(s,g)=>s.totalClears>=100},
+ {id:'words300',name:'言霊の収集家',condition:'累計300問クリア',test:(s,g)=>s.totalClears>=300},
+ {id:'words1000',name:'ことばの語り部',condition:'累計1,000問クリア',test:(s,g)=>s.totalClears>=1000},
+ {id:'level3',name:'かけだし冒険者',condition:'冒険モードでLv.3に到達',test:(s,g)=>s.bestLevel>=3},
+ {id:'level5',name:'一人前の冒険者',condition:'冒険モードでLv.5に到達',test:(s,g)=>s.bestLevel>=5},
+ {id:'level10',name:'歴戦の勇士',condition:'冒険モードでLv.10に到達',test:(s,g)=>s.bestLevel>=10},
+ {id:'level15',name:'試練を越えし者',condition:'冒険モードでLv.15に到達',test:(s,g)=>s.bestLevel>=15},
+ {id:'level20',name:'星巡りの勇者',condition:'冒険モードでLv.20に到達',test:(s,g)=>s.bestLevel>=20},
+ {id:'level30',name:'伝説のタイピング王',condition:'冒険モードでLv.30に到達',test:(s,g)=>s.bestLevel>=30},
+ {id:'combo10',name:'連撃の剣士',condition:'1回の挑戦で10コンボ',test:(s,g)=>g.maxCombo>=10},
+ {id:'combo20',name:'連撃の達人',condition:'1回の挑戦で20コンボ',test:(s,g)=>g.maxCombo>=20},
+ {id:'perfect5',name:'ノーミスの使い手',condition:'ミスなしで5問連続クリア',test:(s,g)=>g.clears>=5&&g.mistakes===0},
+ {id:'perfect20',name:'完璧なる詠唱者',condition:'ミスなしで20問連続クリア',test:(s,g)=>g.clears>=20&&g.mistakes===0},
+ {id:'roman10',name:'ローマ字の騎士',condition:'ローマ字入力で1回に10問クリア',test:(s,g)=>g.recordConfig.mode==='roman'&&g.clears>=10},
+ {id:'flick10',name:'指先の魔術師',condition:'かなフリック入力で1回に10問クリア',test:(s,g)=>g.recordConfig.mode==='flick'&&g.clears>=10},
+ {id:'free20',name:'フリー道場の達人',condition:'フリーモードで1回に20問クリア',test:(s,g)=>g.playstyle==='free'&&g.clears>=20},
+ {id:'sentence1',name:'文章の探求者',condition:'冒険モードで文章を1問クリア',test:(s,g)=>s.totalSentences>=1},
+ {id:'sentence10',name:'文章の賢者',condition:'冒険モードで文章を累計10問クリア',test:(s,g)=>s.totalSentences>=10}
+];
+function cleanTitleData(x){
+ const v=x&&typeof x==='object'&&!Array.isArray(x)?x:{};
+ const st=v.stats&&typeof v.stats==='object'&&!Array.isArray(v.stats)?v.stats:{};
+ const unlocked=v.unlocked&&typeof v.unlocked==='object'&&!Array.isArray(v.unlocked)?v.unlocked:{};
+ const validIds=new Set(TITLE_DEFS.map(t=>t.id));
+ return {stats:{totalClears:Math.max(0,Math.floor(Number(st.totalClears)||0)),totalSentences:Math.max(0,Math.floor(Number(st.totalSentences)||0)),bestLevel:Math.max(1,Math.floor(Number(st.bestLevel)||1))},unlocked:Object.fromEntries(Object.entries(unlocked).filter(([k])=>validIds.has(k))),equipped:validIds.has(v.equipped)&&unlocked[v.equipped]?v.equipped:null};
+}
+function loadTitleData(){try{return cleanTitleData(JSON.parse(localStorage.getItem(TITLE_KEY)||'null'))}catch(e){return cleanTitleData(null)}}
+let titleData=loadTitleData();
+function saveTitleData(){try{localStorage.setItem(TITLE_KEY,JSON.stringify(titleData));return true}catch(e){return false}}
+function titleById(id){return TITLE_DEFS.find(t=>t.id===id)}
+function activeTitle(){return titleById(titleData.equipped)?.name||'なし'}
+function updateTitleSummary(){
+ const count=Object.keys(titleData.unlocked).length;
+ $('titles-summary').textContent='獲得 '+count+' / '+TITLE_DEFS.length+'　／　設定中の称号：「'+activeTitle()+'」';
+}
+function applyTitleMilestones(g){
+ const newly=[];
+ for(const t of TITLE_DEFS){
+   if(!titleData.unlocked[t.id]&&t.test(titleData.stats,g)){
+     titleData.unlocked[t.id]=new Date().toISOString();newly.push(t);
+     if(!titleData.equipped)titleData.equipped=t.id;
+   }
+ }
+ return newly;
+}
+function recordTitleProgress(){
+ if(!game?.active)return [];
+ titleData.stats.totalClears++;
+ if(game.question?.category==='sentence')titleData.stats.totalSentences++;
+ if(game.playstyle==='adventure')titleData.stats.bestLevel=Math.max(titleData.stats.bestLevel,game.level);
+ const newly=applyTitleMilestones(game);
+ game.newTitles.push(...newly);
+ saveTitleData();updateTitleSummary();
+ return newly;
+}
+/* 過去ランキングのうち確実に判定できる最高到達レベルなどは引き継ぐ。
+   累計問題数は過去の全プレイが残っていないため、v2.5以降を集計。 */
+function restoreTitleMilestonesFromRanking(){
+ const rows=Object.values(loadRankingStore()).flatMap(v=>Array.isArray(v)?v:[]).filter(v=>v&&typeof v==='object');
+ const oldBest=rows.filter(v=>v.playstyle==='adventure'&&Number.isFinite(v.level)).reduce((n,v)=>Math.max(n,v.level),1);
+ titleData.stats.bestLevel=Math.max(titleData.stats.bestLevel,oldBest);
+ const ghost={clears:0,mistakes:99,maxCombo:0,playstyle:'',recordConfig:{mode:''}};
+ const first=applyTitleMilestones(ghost);
+ if(first.length)saveTitleData();
+}
+function renderTitles(){
+ const root=$('titles-list');root.replaceChildren();
+ const count=Object.keys(titleData.unlocked).length;
+ $('titles-counter').textContent=count+' / '+TITLE_DEFS.length+' 獲得';
+ $('titles-current').textContent='設定中の称号：「'+activeTitle()+'」　／　達成すると自動で保存されます。';
+ for(const t of TITLE_DEFS){
+   const has=!!titleData.unlocked[t.id],equipped=titleData.equipped===t.id;
+   const el=document.createElement('div');el.className='title-tile '+(has?'unlocked':'locked')+(equipped?' equipped':'');
+   const name=document.createElement('div');name.className='title-name';name.textContent=(has?'🏅 ':'🔒 ')+t.name;
+   const rule=document.createElement('div');rule.className='title-rule';rule.textContent='獲得条件：'+t.condition;
+   const stat=document.createElement('div');stat.className='title-state';stat.textContent=equipped?'✦ 設定中':has?'✦ 獲得済み':'未獲得';
+   el.append(name,rule,stat);
+   if(has){const button=document.createElement('button');button.className='title-equip';button.type='button';button.textContent=equipped?'設定中':'この称号を設定';button.disabled=equipped;button.addEventListener('click',()=>{titleData.equipped=t.id;saveTitleData();updateTitleSummary();renderTitles()});el.append(button)}
+   root.append(el);
+ }
+}
+function openTitles(){renderTitles();$('titles-overlay').classList.remove('hide');$('titles-close').focus({preventScroll:true})}
+function closeTitles(){$('titles-overlay').classList.add('hide');$('titles-open').focus({preventScroll:true})}
+$('titles-open').addEventListener('click',openTitles);
+$('titles-close').addEventListener('click',closeTitles);
+$('titles-x').addEventListener('click',closeTitles);
+$('titles-overlay').addEventListener('pointerdown',e=>{if(e.target===$('titles-overlay'))closeTitles()});
+const RANKING_KEY='dqx_typing_ranking_top10_v23';
+function rankingGroup(config){return config.playstyle==='adventure'?'adventure|'+config.mode:config.playstyle==='timeattack'?'timeattack|'+config.mode:[config.mode,config.category,config.difficulty,Number(config.duration)].join('|')}
+function rankingConditions(config){const modes={roman:'ローマ字',flick:'かなフリック'},levels={easy:'初級',normal:'中級',hard:'上級'};return config.playstyle==='adventure'?['冒険モード',modes[config.mode],'到達レベル順'].join(' ／ '):config.playstyle==='timeattack'?['タイムアタック',modes[config.mode],'60秒','クリア数順'].join(' ／ '):[modes[config.mode],categoryNames[config.category],levels[config.difficulty],Number(config.duration)===0?'無制限・30問':config.duration+'秒'].join(' ／ ')}
+function loadRankingStore(){try{const saved=JSON.parse(localStorage.getItem(RANKING_KEY)||'{}');return saved&&typeof saved==='object'&&!Array.isArray(saved)?saved:{}}catch(e){return {}}}
+function compareScores(a,b){return (a.playstyle==='adventure'&&b.playstyle==='adventure'?((b.level||1)-(a.level||1)||(b.xp||0)-(a.xp||0)):0)||(a.playstyle==='timeattack'&&b.playstyle==='timeattack'?(b.clears-a.clears):0)||b.score-a.score||b.clears-a.clears||b.accuracy-a.accuracy||((b.createdAt||'').localeCompare(a.createdAt||''))}
+function rankingRows(config){const rows=loadRankingStore()[rankingGroup(config)];return Array.isArray(rows)?rows.filter(x=>x&&typeof x.id==='string'&&Number.isFinite(x.score)&&Number.isFinite(x.clears)&&Number.isFinite(x.accuracy)).sort(compareScores).slice(0,10):[]}
+function saveScoreToRanking(entry,config){
+ if(entry.clears<1)return {position:null,skipped:true,entryId:null};
+ try{
+   const store=loadRankingStore(),group=rankingGroup(config),id=Date.now()+'_'+Math.random().toString(36).slice(2,11);
+   const rows=rankingRows(config).concat([{...entry,id}]).sort(compareScores).slice(0,10);
+   store[group]=rows;
+   localStorage.setItem(RANKING_KEY,JSON.stringify(store));
+   const index=rows.findIndex(row=>row.id===id);
+   return {position:index>=0?index+1:null,entryId:id,error:false};
+ }catch(e){return {position:null,entryId:null,error:true}}
+}
+function rankingDate(iso){const d=new Date(iso);if(!Number.isFinite(d.getTime()))return '日時不明';return d.toLocaleString('ja-JP',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).replace(' ','　')}
+function renderRanking(containerId,conditionId,config,highlightId=null){
+ const root=$(containerId);root.replaceChildren();$(conditionId).textContent=rankingConditions(config);
+ const rows=rankingRows(config);
+ if(!rows.length){const empty=document.createElement('p');empty.className='ranking-empty';empty.textContent='まだ記録がありません。\n1問以上クリアして、最初の記録をつくろう！';empty.style.whiteSpace='pre-line';root.append(empty);return}
+ const table=document.createElement('table');table.className='ranking-table';table.setAttribute('aria-label','スコアランキング上位10件');
+ const widths=config.playstyle==='timeattack'?[13,23,22,42]:[13,30,15,42];const colgroup=document.createElement('colgroup');widths.forEach(w=>{const c=document.createElement('col');c.style.width=w+'%';colgroup.append(c)});table.append(colgroup);
+ const thead=document.createElement('thead'),head=document.createElement('tr');config.playstyle==='timeattack'?['順位','クリア','スコア','記録日時']:['順位','スコア',config.playstyle==='adventure'?'到達':'クリア','記録日時'].forEach(title=>{const th=document.createElement('th');th.scope='col';th.textContent=title;head.append(th)});thead.append(head);table.append(thead);
+ const body=document.createElement('tbody');rows.forEach((row,i)=>{const tr=document.createElement('tr');if(row.id===highlightId)tr.className='rank-current';const cells=config.playstyle==='timeattack'?[(i+1)+'位',row.clears+'問',Number(row.score).toLocaleString('ja-JP')+'点',rankingDate(row.createdAt)]:[(i+1)+'位',Number(row.score).toLocaleString('ja-JP')+'点',config.playstyle==='adventure'?'Lv.'+row.level:row.clears+'問',rankingDate(row.createdAt)];cells.forEach((t,n)=>{const td=document.createElement('td');td.textContent=t;if(n===1)td.className='rank-score';if(n===3)td.className='rank-date';tr.append(td)});body.append(tr)});table.append(body);root.append(table);
+}
+function updateHomeRecord(){
+ try{
+   const rows=rankingRows(selection),record=rows[0];
+   $('adventure-record').textContent=selection.playstyle==='adventure'?(record?'🏅 最高到達レベル：Lv.'+record.level+' ／ '+record.clears+'問クリア':'🏅 最高到達レベル：まだ記録がありません'):'';
+   $('timeattack-record').textContent=selection.playstyle==='timeattack'?(record?'🏆 最高記録：'+record.clears+'問クリア':'🏆 最高記録：まだありません'):'';
+   if(record){$('home-record').textContent=selection.playstyle==='adventure'?'🏆 冒険の最高記録：Lv.'+record.level+' ／ '+record.score.toLocaleString('ja-JP')+'点':selection.playstyle==='timeattack'?'🏆 60秒の最高記録：'+record.clears+'問クリア ／ '+record.score.toLocaleString('ja-JP')+'点':'🏆 この条件の最高記録：'+record.score.toLocaleString('ja-JP')+'点 ／ '+record.clears+'問クリア'}
+   else{
+     const key=selection.mode==='flick'?'dqx_typing_best_flick_v22':'dqx_typing_best_v1';const legacy=JSON.parse(localStorage.getItem(key)||'null');
+     $('home-record').textContent=selection.playstyle==='adventure'?'🏆 冒険の記録はまだありません':selection.playstyle==='timeattack'?'🏆 60秒チャレンジの記録はまだありません':legacy?'🏆 この条件はまだ記録なし（旧版最高 '+Number(legacy.score).toLocaleString('ja-JP')+'点は保持）':'🏆 この条件はまだ記録がありません';
+   }
+ }catch(e){$('home-record').textContent='🏆 記録を読み込めませんでした'}
+}
+function openRanking(){renderRanking('ranking-modal-list','ranking-modal-condition',selection);$('ranking-overlay').classList.remove('hide');$('ranking-close').focus({preventScroll:true})}
+function closeRanking(){$('ranking-overlay').classList.add('hide');$('ranking-open').focus({preventScroll:true})}
+$('ranking-open').addEventListener('click',openRanking);
+$('ranking-close').addEventListener('click',closeRanking);
+$('ranking-overlay').addEventListener('pointerdown',e=>{if(e.target===$('ranking-overlay'))closeRanking()});
+function startFromSetup(){if(selection.mode==='flick')start();else askKeyboardConfirmation()}
+$('start-btn').addEventListener('click',startFromSetup);
+$('keyboard-yes').addEventListener('click',startAfterKeyboardConfirmation);
+$('keyboard-no').addEventListener('click',showKeyboardHelp);
+$('keyboard-ready').addEventListener('click',startAfterKeyboardConfirmation);
+$('keyboard-cancel').addEventListener('click',closeKeyboardConfirmation);
+$('retry-btn').addEventListener('click',startFromSetup);$('home-btn').addEventListener('click',()=>{show('setup');updateHomeRecord()});$('quit-btn').addEventListener('click',()=>finish('quit'));$('type-input').addEventListener('input',handleInput);$('game-screen').addEventListener('pointerdown',e=>{if(e.target.closest('button')||selection.mode==='flick')return;if(e.target!==$('type-input'))focusInput()});document.addEventListener('keydown',e=>{
+  if(!$('titles-overlay').classList.contains('hide')){if(e.key==='Escape'){e.preventDefault();closeTitles()}return}
+  if(!$('ranking-overlay').classList.contains('hide')){
+    if(e.key==='Escape'){e.preventDefault();closeRanking()}
+    return;
+  }
+  if(!$('keyboard-overlay').classList.contains('hide')){
+    if(e.key==='Escape'){e.preventDefault();closeKeyboardConfirmation()}
+    return;
+  }
+  if(e.key==='Enter'&&$('setup-screen').offsetParent!==null&&document.activeElement.tagName!=='BUTTON'){
+    e.preventDefault();startFromSetup();
+  }
+});document.addEventListener('visibilitychange',()=>{if(document.hidden&&game?.active){game.pausedAt=performance.now()}else if(!document.hidden&&game?.active&&game.pausedAt){game.start+=performance.now()-game.pausedAt;game.pausedAt=null;updateStats()}});
+restoreTitleMilestonesFromRanking();choosePlaystyle('free');updateHomeRecord();updateTitleSummary();
+</script></body></html>
